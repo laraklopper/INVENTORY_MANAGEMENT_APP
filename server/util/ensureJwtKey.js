@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Resolve .env path relative to project root
-let envFilePath = path.join(process.cwd(), './env');
+let envFilePath = path.join(process.cwd(), './.env');
 
 function ensureEnvHasKey(content, keyLine) {
     const hasKey = /(^|\r?\n)JWT_SECRET_KEY\s*=/.test(content);
