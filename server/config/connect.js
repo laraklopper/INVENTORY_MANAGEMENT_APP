@@ -8,3 +8,20 @@ if (!uri || !database) {
     console.error("[ERROR: connect.js] Missing environment variables: DATABASE_URL or DATABASE_NAME");
     process.exit(1);
 }
+
+const connectDB = async () => {
+    try {
+        await mongoose.connect(uri, {
+            dbName: database,
+            serverSelectionTimeoutMS: 5000,
+            connectTimeoutMS: 10000,
+        })
+        console.log("[SUCCESS: connect.js]Successfully connected to MongoDB");
+        
+    } catch (error) {
+        console.error("[ERROR: connect.js] Error connecting to MongoDB", error);
+        process.exit(1)
+    }
+}
+
+module.exports = connectDB;
