@@ -24,4 +24,28 @@ const connectDB = async () => {
     }
 }
 
+// ============== MONGODB EVENT HANDLERS ================
+// Event listener triggered on MongoDB connection errors
+mongoose.connection.on('error', (error) => {
+    console.error(`[ERROR: connectDB.js]Error connecting to MongoDb database. Exiting now...`, error);
+    process.exit(1);//Exit the process with a failure code
+})
+
+//Function executed when the connection is lost
+mongoose.connection.on("disconnected", () => {
+    console.warn("[WARNING: connectDB.js] MongoDB Disconnected! Reconnecting...");
+    connectDB();// Try to reconnect if the connection is lost
+});
+
+// Set up an event listener for the 'reconnected' event on the Mongoose connection
+mongoose.connection.on("reconnected", () => {
+    console.log("[INFO: connectDB.js] MongoDB Reconnected!");
+});
+
+// Triggered once when MongoDB is connected for the first time
+mongoose.connection.once('open', async () => {
+    console.log("[SUCCESS: connectDB.JS] Database connection established");
+});
+
+
 module.exports = connectDB;
