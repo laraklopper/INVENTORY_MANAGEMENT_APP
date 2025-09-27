@@ -30,4 +30,18 @@ const userSchema = new mongoose.Schema({
     toObject:{virtuals: true}
 });
 
+//===============VIRTUALS====================
+userSchema.virtual('fullNameString').get(function () {
+    const {firstName, lastName} = this.fullName;
+    return `${firstName} ${lastName}`.trim();
+})
+
+userSchema.virtual('contactDetailsString').get(function () {
+    const {email = '', contactNumber = ''} = this.contactDetails;
+    return `Email: ${email}, Phone: ${contactNumber}`;
+})
+//===========HOOKS==============
+
+
+//Export the schema
 module.exports = mongoose.model('User', userSchema);
