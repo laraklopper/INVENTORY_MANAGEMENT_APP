@@ -1,7 +1,8 @@
 require('dotenv').config()
 const express = require('express');
 const router = express.Router();
-const User = require('../models/userSchema')
+const User = require('../models/userSchema');
+const { checkJwtToken } = require('./middleware');
 const secretKey = process.env.JWT_SECRET_KEY || 'secretKey';
 
 if (!secretKey) {
@@ -10,7 +11,7 @@ if (!secretKey) {
 
 //===============ROUTES=======================
 //-------------GET--------------------------
-router.get('/me', async (req, res) => {
+router.get('/me', checkJwtToken, async (req, res) => {
     try {
         const userId = req.userId?.userId;
 
@@ -28,9 +29,34 @@ router.get('/me', async (req, res) => {
         console.log('[SUCCESS: userRoutes.js] [GET /users/me] User Details:', user);
         res.status(200).json(user);
     } catch (error) {
-        console.error('[ERROR: userRoutes.js] Error fetching user', error.message);//Log an error message in the console for debugging purposes
+        console.error('[ERROR: userRoutes.js] Error fetching user', error.message);
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
 })
+
+
+//Route to GET all users
+//Send a GET request to the /users/findUsers endpoint
+router.get('/findUsers', checkJwtToken, async (req, res) => {
+    try {
+        const { email, contactNumber, username } = req.query;
+
+        const query = {};
+        if (email) query['contactDetails.email'] = String(email).trim().toLowerCase();
+        if (contactNumber) query['contactDetails.contactNumber'] = contactNumber;
+        console.log(`[INFO: userRoutes.js, /findUsers]: ${query}`);
+
+        const users = await User.find(query).select('-password').exec();
+
+        console.log('[INFO: userRoutes.js]:', users);
+        console.log('[INFO: userRoutes.js] findUsers count:', users.length);
+        return res.status(200).json(users);
+
+    } catch (error) {
+        console.error('[ERROR: userRoutes.js]: Error fetching users', error.message);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+})
+
 module.exports = router;
 
