@@ -20,10 +20,10 @@ export default function Header({currentUser, heading}) {
     const formattedTime = currentTime.toLocaleTimeString()
   return (
     <header className='header'>
-          <Row>
-              <Col>1 of 3</Col>
+          <Row id='headerRow'>
+              <Col></Col>
               <Col xs={6}>
-                  <Card style={{ width: '18rem' }}>
+                  <Card id='headerCard'>
                       <Card.Header>
                           <h1 id='heading' aria-label='application Heading' aria-level={1}>
                               INVENTORY MANAGER
