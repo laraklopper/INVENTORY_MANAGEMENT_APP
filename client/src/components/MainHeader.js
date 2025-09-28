@@ -53,9 +53,17 @@ export default function MainHeader() {
               </Col>
           </Row>
           <Row>
+              <Col></Col>
+              <Col xs={5}>
+                  <h1 className='mainHeading' aria-label="Page Title" aria-live="polite">
+                      {mainHeading}
+                  </h1>
+              </Col>
+              <Col></Col>
+          </Row>
+          <Row>
               <Col xs={6} md={4}></Col>
               <Col xs={6} md={4}>
-                  <div className="p-2">
                       <nav role="navigation" aria-label="Navigation Bar" className='navigation'>
                           <ul id='navbar'>
                               {/* Link to Login page */}
@@ -72,7 +80,7 @@ export default function MainHeader() {
                               </li>
                           </ul>
                       </nav>
-                  </div>
+                 
               </Col>
               <Col xs={6} md={4}>
                   xs=6 md=4
