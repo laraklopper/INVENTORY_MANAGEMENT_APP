@@ -53,7 +53,9 @@ router.get('/findUsers', checkJwtToken, async (req, res) => {
 
         const query = {};
         if (email) query['contactDetails.email'] = String(email).trim().toLowerCase();
-        if (contactNumber) query['contactDetails.contactNumber'] = contactNumber;
+        if (contactNumber) query['contactDetails.contactNumber'] = String(contactNumber).trim();
+        if (username) query.username = String(username).trim();
+
         console.log(`[INFO: userRoutes.js, /findUsers]: ${query}`);
 
         const users = await User.find(query).select('-password').exec();
@@ -78,7 +80,9 @@ router.post('/login', async (req,res) => {
             return res.status(400).json({ message: 'Email and password are required' });
         }
 
-        const user = await User.findOne({ 'username': username }).select('+password').exec();
+
+        const user = await User.findOne({ username: String(username).trim() }).select('+password').exec();
+
         if (!user) {
             console.error('[ERROR: userRoutes.js] User not found');
             return res.status(404).json({ message: 'User not found' });
@@ -102,10 +106,19 @@ router.post('/login', async (req,res) => {
                 algorithm: jwtAlgorithm
             }
         )
+        const safeUser = await User.findById(user._id).select('-password').exec();
+        console.log('[SUCCESS: userRoutes.js /login] User logged in:', safeUser.username);
+
+        return res.status(200).json({
+            token: jwtToken,
+            user: safeUser,
+        });
     } catch (error) {
-        
+        console.error('[ERROR: userRoutes.js /login]', error.message);
+        return res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
 })
+
 router.post('/register', async (req, res) => {
     console.log(req.body);
     try {
@@ -143,6 +156,7 @@ router.post('/register', async (req, res) => {
         const normalizedEmail = String(email).trim().toLowerCase();
         const normalizedContact = String(contactNumber).trim();
         const normalizedUsername = String(username).trim();
+        const normalizedCompany = String(companyName).trim();
 
         // Check if a user already exists with the same username, email or contact number
         const existingUser = await User.findOne({
