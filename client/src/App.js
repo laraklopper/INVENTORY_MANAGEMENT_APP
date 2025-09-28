@@ -37,7 +37,7 @@ export default function App() {
           <Col></Col>
         </Row>
         <Routes>
-          
+          {loggedIn ? ():()}
         </Routes>
 
     </Container>
