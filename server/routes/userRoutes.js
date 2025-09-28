@@ -58,5 +58,112 @@ router.get('/findUsers', checkJwtToken, async (req, res) => {
     }
 })
 
+//-----------------POST----------------------------
+router.post('/register', async (req, res) => {
+    try {
+        // Extract incoming data from the request body
+        const {
+            username,
+            companyName,
+            position,
+            fullName = {},
+            contactDetails = {},
+            dateOfBirth,
+            password,
+            admin: adminFromBody, // Optional explicit admin flag allowed from body; will also be computed by position
+        } = req.body || {};
+
+        const { firstName, lastName } = fullName || {};
+        const { email, contactNumber } = contactDetails || {};
+
+        const missingFields = [];
+        if (!username) missingFields.push('Username')
+        if (!companyName) missingFields.push('Company Name')
+        if (!position) missingFields.push('position')    
+        if (!firstName) missingFields.push('First Name');
+        if (!lastName) missingFields.push('Last Name');
+        if (!email) missingFields.push('Email');
+        if (!contactNumber) missingFields.push('Contact Number');
+        if (!password) missingFields.push('Password');
+
+        if (missingFields.length > 0) {
+            console.error(`[ERROR: userRoutes.js, /register] The following fields are required: ${missingFields.join(', ')}`);
+            return res.status(400).json({ message: 'All required fields must be provided.' });
+        }
+
+        // Normalize inputs
+        const normalizedEmail = String(email).trim().toLowerCase();
+        const normalizedContact = String(contactNumber).trim();
+        const normalizedUsername = String(username).trim();
+
+        // Check if a user already exists with the same username, email or contact number
+        const existingUser = await User.findOne({
+            $or: [
+                { username: normalizedUsername },
+                { 'contactDetails.email': normalizedEmail },
+                { 'contactDetails.contactNumber': normalizedContact },
+            ],
+        });
+
+        //conditional rendering to check if user already exists
+        console.log('[DEBUG: userRoutes.js, /register] Existing user:', existingUser);
+       
+        if (existingUser) {
+            console.error('[ERROR: userRoutes.js, /register] User with this username, email or contact number already exists');
+            return res.status(409).json({
+                message: 'A user with this username, email or contact number already exists.'
+            });
+        }
+        const computedIsAdmin =
+            typeof adminFromBody === 'boolean'
+                ? adminFromBody
+                : position === 'manager' || position === 'admin';
+
+
+        // Create and save a new user instance
+        const newUser = new User({
+            username: normalizedUsername,
+            fullName: { firstName, lastName },
+            companyName: normalizedCompany,
+            position: position || 'viewer',
+            contactDetails: {
+                email: normalizedEmail,
+                contactNumber: normalizedContact,
+            },
+            dateOfBirth,
+            password,
+            admin: !!computedIsAdmin,
+        });
+
+
+        const savedUser = await newUser.save();
+        console.log('[INFO: userRoutes.js, /register] New user saved:', savedUser);
+
+        // Generate JWT Token
+        // Generate JWT with same env-driven config as login
+        const token = jwt.sign(
+            {
+                userId: savedUser._id,
+                fullName: savedUser.fullName,
+                isAdmin: !!savedUser.admin,
+            },
+            secretKey,
+            { expiresIn: expirationTime, algorithm: jwtAlgorithm }
+        );
+
+        console.log('[INFO: userRoutes.js, /register] New user created:', savedUser);
+        return res.status(201).json({
+            token,
+            userId: savedUser._id,
+            fullName: savedUser.fullName,
+            isAdmin: !!savedUser.admin,
+        });
+    } catch (error) {
+        console.error('[ERROR: userRoutes.js, /register]', error.message);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    }
+})
+
+//Export the userRouter
 module.exports = router;
 
