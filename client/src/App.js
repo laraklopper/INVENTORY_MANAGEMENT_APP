@@ -35,11 +35,14 @@ export default function App() {
   return (
     <>
     <Container>
-        <Row>
+        <Row id='errorRow'>
           <Col></Col>
-          <Col xs={5}>
+          <Col xs={5} id='errorCol'>
             {/* Error message */}
-            {error && <p id='errorMessage'>{error}</p>}
+            <div id='stateMsgs'>
+              {/* Display error message */}
+              {error && <p id='errorMessage'>{error}</p>}
+            </div>
           </Col>
           <Col></Col>
         </Row>
@@ -48,24 +51,30 @@ export default function App() {
             <>
             <Route exact path='/' element={
               <ProtectedUserRoute currentUser={currentUser}>
-                <Home/>
+                <Home
+                currentUser={currentUser}
+                />
               </ProtectedUserRoute>
             }/>
             <Route path='/stock' element={
-              <ProtectedAdminRoute>
-                <Stock/>
+              <ProtectedAdminRoute
+              currentUser={currentUser}
+              >
+                <Stock
+                currentUser={currentUser}
+                />
               </ProtectedAdminRoute>
             }
             />
             </>
           ):(
             <>
-            <Route exact path='/' element={<Login/>}/>
-            <Route path='/reg' element={<Register/>}/>
+            <Route exact path='/' element={<Login userData={userData} setError={setError}/>}/>
+            <Route path='/reg' element={<Register setError={setError}/>}/>
             </>
           )}
+          <Route path='*' element={<h2 id='pageNotFound'>404: Page Not Found</h2>} />
         </Routes>
-
     </Container>
     
     </>
