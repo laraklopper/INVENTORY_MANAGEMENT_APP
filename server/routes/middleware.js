@@ -28,12 +28,19 @@ const checkJwtToken = (req, res, next) => {
         const decoded = jwt.verify(token, secretKey)
         req.user = decoded;
 
+        // Attach decoded payload
+        req.user = decoded;               // e.g. { userId, isAdmin, fullName, iat, exp }
+        req.userId = decoded.userId;      // convenience alias for your routes
+        req.isAdmin = !!decoded.isAdmin;  // another helpful alias
         next()
 
 
     } catch (error) {
-        console.error('[ERROR: middleware.js] No token attatched to the request', error.message);
-        return res.status(400).json({ message: 'Invalid token.' });
+        if (error.name === 'TokenExpiredError') {
+            return res.status(401).json({ message: 'Token expired.' });
+        }
+        return res.status(401).json({ message: 'Invalid token.' });
+    
     }
 }
 
@@ -56,8 +63,9 @@ const checkPassword = (req, res, next) => {
                 message: 'Password must be at least 8 characters long and contain one special character.'
             });
         }
+        return next();
     } catch (error) {
-        
+        return res.status(500).json({ message: 'Internal error validating password.' });
     }
 }
 const checkAge = (req, res, next) =>{
@@ -92,7 +100,8 @@ const checkAge = (req, res, next) =>{
         return next();
   
     } catch (error) {
-        
+        console.error('[ERROR: middleware.js, checkAge]: Internal error validating age');
+        return res.status(500).json({ error: 'Internal error validating age' });
     }
 }
 
