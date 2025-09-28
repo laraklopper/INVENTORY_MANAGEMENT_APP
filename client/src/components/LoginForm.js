@@ -1,0 +1,88 @@
+import React, { useState } from 'react'
+import '../CSS/Forms.css';
+import Button from 'react-bootstrap/Button';
+import Stack from 'react-bootstrap/Stack';
+
+export default function LoginForm({setUserData, submitLogin, userData}) {
+    const [showPassword, setPassword] = useState(false)
+    const [passwordMsg, setPasswordMsg] = useState(false)
+
+    const handleLoginInput = (event) =>{
+        const {name, value} = event.target
+        setUserData((prev) => ({
+            ...prev,
+            [name] :value
+        }))
+    }
+
+
+  return (
+  
+        <form aria-label='LoginForm' id='loginForm'>
+              <Stack gap={3} id='loginDetails'>
+                  <div className="p-2" id='usernameBlock'>
+                    <label>
+                        <p className='labelText'>USERNAME:</p>
+                        <input
+                        className='input'
+                        name='username'
+                        value={userData.username}
+                        placeholder='USERNAME'
+                        required
+                        onChange={handleLoginInput}
+                        aria-label='loginInput'
+                        aria-required='true'
+                        />
+                    </label>
+                  </div>
+                  <div className="p-2" id='loginPasswordBlock'>
+                    <label>
+                        <p className='labelText'>PASSWORD</p>
+                        <input
+                              className='input'
+                              type={showPassword ? 'text' : 'password'}
+                              name='password'
+                              value={userData.password}
+                              onChange={handleLoginInput}
+                              autoComplete='current-password'
+                              required
+                              aria-required='true'
+                              onFocus={() => setPasswordMsg(true)}
+                              onBlur={() => setPasswordMsg(false)}
+                        />
+                        <div>
+                            <Button 
+                              variant='warning'
+                              type='button'
+                              id='passwordDisplayBtn'
+                              onClick={() => setShowPassword(!showPassword)}
+                              aria-label={showPassword ? 'Hide Password' : 'Show Password'}
+                              aria-pressed={showPassword}
+                            >
+                                {showPassword ? 'HIDE PASSWORD' : 'SHOW PASSWORD'}
+                            </Button>
+                        </div>
+                    </label>
+                  </div>
+                  {passwordMsg && (
+                      <div className="p-2" id='messageBlock'>
+                          <h6 className='msgText'>
+                              <strong>We will never share <br /> your password</strong>
+                          </h6>
+                      </div>
+                  )}
+                  <div className="p-2">
+                    <Button
+                    variant='light'
+                    type='submit'
+                    id='loginBtn'
+                    aria-label='Submit Login Form Button'
+                    >
+
+                    </Button>
+                  </div>
+              </Stack>
+        </form>
+    
+  )
+}
