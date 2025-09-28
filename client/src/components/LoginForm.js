@@ -7,6 +7,10 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
     const [showPassword, setPassword] = useState(false)
     const [passwordMsg, setPasswordMsg] = useState(false)
 
+    const handleLogin = (e) => {
+        e.preventDefault()
+        submitLogin()
+    }
     const handleLoginInput = (event) =>{
         const {name, value} = event.target
         setUserData((prev) => ({
@@ -17,8 +21,7 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
 
 
   return (
-  
-        <form aria-label='LoginForm' id='loginForm'>
+        <form aria-label='LoginForm' id='loginForm' onSubmit={handleLogin}>
               <Stack gap={3} id='loginDetails'>
                   <div className="p-2" id='usernameBlock'>
                     <label>
@@ -78,11 +81,9 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
                     id='loginBtn'
                     aria-label='Submit Login Form Button'
                     >
-
                     </Button>
                   </div>
               </Stack>
         </form>
-    
   )
 }
