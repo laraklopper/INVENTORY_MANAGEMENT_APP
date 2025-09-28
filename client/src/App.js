@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -31,6 +31,70 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [error, setError] =useState(null)
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const token = localStorage.getItem('token');//Get token from localStorage
+        if(!token || !loggedIn) return
+
+        const response = await fetch(`http://localhost:3001/users/fetchUsers`, {
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        })
+
+        if (!response.ok) {
+          console.error('[ERROR: App.js]: Failed to fetch Clients');
+          throw new Error("Failed to fetch Clients");
+        }
+
+        const fetchedUsers = await response.json()
+        if (Array.isArray(fetchedUsers)) {
+          setUsers(fetchedUsers)
+          setError(null); // Clear any previous errors
+        }
+      } catch (error) {
+        // console.error(`ERROR: App.js: error fetching users`);
+        setError(`ERROR: App.js: error fetching users: ${error.message}`);
+      }
+    }
+
+    const fetchCurrentUser = async () => {
+      try {
+        const token = localStorage.getItem('token');//Get token from localStorage
+        if (!token || !loggedIn) return;
+
+        const response = await fetch(`http://localhost:3001/users/me`, {
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        })
+
+        if (!response.ok) {
+          console.error(`[ERROR: App.js]: Failed to fetch user details `);
+          throw new Error("Failed to fetch user details");
+        }
+
+        const fetchCurrentUser = await response.json()
+
+        setCurrentUser(fetchCurrentUser)
+      } catch (error) {
+        setError(`Error fetching current user details: ${error.message}`)
+        console.error('[ERROR: App.js]: Error fetching current user details');
+      }
+    }
+
+    if (loggedIn) {
+      fetchUsers()
+      fetchCurrentUser()
+    }
+  },[setError, setCurrentUser, loggedIn,])
   //==========================================
   return (
     <>

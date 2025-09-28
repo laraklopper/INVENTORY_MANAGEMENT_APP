@@ -30,6 +30,10 @@ export default function Header({currentUser, heading}) {
                           </h1>
                       </Card.Header>
                       <ListGroup variant="flush">
+                        <ListGroup.Item id='listHeading'>
+                        <i><h1 className='heading'>{heading}</h1></i>
+                          </ListGroup.Item>  
+                
                           {currentUser?.username && (
                               <ListGroup.Item variant="warning" id="listItem1">
                                   <i>
