@@ -1,12 +1,13 @@
 require('dotenv').config()
 const express = require('express');
+const jwt = require('jsonwebtoken')
 const router = express.Router();
 const User = require('../models/userSchema');
 const { checkJwtToken } = require('./middleware');
 
 const secretKey = process.env.JWT_SECRET_KEY || 'secretKey';
 const expirationTime = process.env.JWT_EXPIRATION || '12';
-const algorithm = process.env.JWT_ALGORITHM || 'HS256';
+const jwtAlgorithm = process.env.JWT_ALGORITHM || 'HS256';
 
 if (!secretKey) {
     console.warn("[WARNING: userRoute.js]: JWT_SECRET_KEY not set. Using fallback key.");  
@@ -14,7 +15,7 @@ if (!secretKey) {
 else if (!expirationTime) {
     console.warn('[WARNING: userRoute.js] Missing exiration time, using fallback time')
 }
-else if (!algorithm) {
+else if (!jwtAlgorithm) {
     console.warn('[WARNING: userRoute.js] Missing jwt algorithm, using fallback algorithm.');
 }
 
@@ -195,7 +196,10 @@ router.post('/register', async (req, res) => {
                 isAdmin: !!savedUser.admin,
             },
             secretKey,
-            { expiresIn: expirationTime, algorithm: jwtAlgorithm }
+            { 
+                expiresIn: expirationTime, 
+                algorithm: jwtAlgorithm 
+            }
         );
 
         console.log('[INFO: userRoutes.js, /register] New user created:', savedUser);
