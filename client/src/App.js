@@ -3,6 +3,13 @@ import './App.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Route } from 'react-router-dom';
+import ProtectedUserRoute from './protectedRoutes.js/ProtectedUserRoute';
+import Home from './pages/Home';
+import ProtectedAdminRoute from './protectedRoutes.js/ProtectedAdminRoute';
+import Stock from './pages/Stock';
+import Login from './pages/Login';
+import Register from './pages/Register';
 export default function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [users, setUser] = useState([])
@@ -39,10 +46,22 @@ export default function App() {
         <Routes>
           {loggedIn ? (
             <>
+            <Route exact path='/' element={
+              <ProtectedUserRoute currentUser={currentUser}>
+                <Home/>
+              </ProtectedUserRoute>
+            }/>
+            <Route path='/stock' element={
+              <ProtectedAdminRoute>
+                <Stock/>
+              </ProtectedAdminRoute>
+            }
+            />
             </>
           ):(
             <>
-            
+            <Route exact path='/' element={<Login/>}/>
+            <Route path='/reg' element={<Register/>}/>
             </>
           )}
         </Routes>
