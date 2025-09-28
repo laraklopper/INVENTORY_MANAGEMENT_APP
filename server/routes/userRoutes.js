@@ -3,10 +3,19 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/userSchema');
 const { checkJwtToken } = require('./middleware');
+
 const secretKey = process.env.JWT_SECRET_KEY || 'secretKey';
+const expirationTime = process.env.JWT_EXPIRATION || '12';
+const algorithm = process.env.JWT_ALGORITHM || 'HS256';
 
 if (!secretKey) {
     console.warn("[WARNING: userRoute.js]: JWT_SECRET_KEY not set. Using fallback key.");  
+}
+else if (!expirationTime) {
+    console.warn('[WARNING: userRoute.js] Missing exiration time, using fallback time')
+}
+else if (!algorithm) {
+    console.warn('[WARNING: userRoute.js] Missing jwt algorithm, using fallback algorithm.');
 }
 
 //===============ROUTES=======================
@@ -59,7 +68,45 @@ router.get('/findUsers', checkJwtToken, async (req, res) => {
 })
 
 //-----------------POST----------------------------
+router.post('/login', async (req,res) => {
+    try {
+        const { username, password } = req.body || {};
+
+        if (!username || !password) {
+            console.error('[ERROR: userRoutes.js , /login] Email and password are required');
+            return res.status(400).json({ message: 'Email and password are required' });
+        }
+
+        const user = await User.findOne({ 'username': username }).select('+password').exec();
+        if (!user) {
+            console.error('[ERROR: userRoutes.js] User not found');
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Conditional rendering to check user credentials
+        if (password !== user.password) {
+            console.error('[ERROR: userRoutes.js] Incorrect password');
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        const jwtToken = jwt.sign(
+            {
+                userId: user._id,
+                isAdmin: user.admin,
+                fullName: user.fullName
+            },
+            secretKey,
+            {
+                expiresIn: expirationTime,
+                algorithm: jwtAlgorithm
+            }
+        )
+    } catch (error) {
+        
+    }
+})
 router.post('/register', async (req, res) => {
+    console.log(req.body);
     try {
         // Extract incoming data from the request body
         const {
