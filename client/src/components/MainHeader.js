@@ -6,7 +6,7 @@ import Stack from 'react-bootstrap/Stack';
 import {Link} from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 
-export default function MainHeader() {
+export default function MainHeader({mainHeading}) {
     const [time, setTime] = useState(new Date())
 
     useEffect(() => {
@@ -82,11 +82,8 @@ export default function MainHeader() {
                       </nav>
                  
               </Col>
-              <Col xs={6} md={4}>
-                  xs=6 md=4
-              </Col>
+              <Col xs={6} md={4}></Col>
           </Row>
-
     </header>
   )
 }
