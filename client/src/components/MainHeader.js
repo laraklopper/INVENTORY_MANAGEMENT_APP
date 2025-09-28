@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,6 +7,16 @@ import {Link} from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 
 export default function MainHeader() {
+    const [time, setTime] = useState(new Date())
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setTime(new Date(), 1000)
+            return () => clearInterval(timer)
+        }, []);
+    }, [])
+
+    const formattedTime = time.toLocaleTimeString()
   return (
     <header className='header'>
           <Row>
@@ -30,8 +40,15 @@ export default function MainHeader() {
                   <h1 id='heading'>INVENTORY MANAGER</h1>
               </Col>
               <Col xs={6} md={4}>
-                  <Card>
-                      <Card.Body></Card.Body>
+                  <Card id='headerTimeCard'>
+                      <Card.Body id='timeCardBody'>
+                          <h2
+                              className="formattedTime"
+                              aria-label="Current Time Display"
+                              aria-live="polite">
+                              {formattedTime}
+                          </h2>
+                      </Card.Body>
                   </Card>
               </Col>
           </Row>
