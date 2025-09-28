@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 
 const connectDB = require('./config/connect')
-
+const userRouter = require('./routes/userRoutes')
 const port = process.env.PORT || 3001;
 
 if (!port) {
@@ -24,6 +24,7 @@ app.use(cors());
 app.use(helmet());
 
 //================MOUNT ROUTES========
+app.use('/user', userRouter )
 mongoose.set('strictPopulate', false);
 
 //==========START THE SERVER================
