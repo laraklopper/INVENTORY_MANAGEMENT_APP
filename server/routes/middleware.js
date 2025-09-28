@@ -37,4 +37,63 @@ const checkJwtToken = (req, res, next) => {
     }
 }
 
-module.exports = {checkJwtToken};
+const checkPassword = (req, res, next) => {
+    console.log('[DEBUG: middleware.js checkPassword] Middleware triggered');
+    try {
+        const password = req.body || {};
+
+        console.log('[DEBUG: middleware.js checkPassword] Password provided:', typeof password === 'string');
+
+        if (typeof password !== 'string' || password.length === 0) {
+            console.error('[ERROR: middleware.js, checkPassword]: Missing Password');
+            return res.status(400).json({ message: 'Password is required.' });
+        }
+
+        const passwordRegex = /^(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
+        if (!passwordRegex.test(password)) {
+            console.error('[ERROR: middleware.js, checkPassword] Invalid password');
+            return res.status(400).json({
+                message: 'Password must be at least 8 characters long and contain one special character.'
+            });
+        }
+    } catch (error) {
+        
+    }
+}
+const checkAge = (req, res, next) =>{
+    console.log('[DEBUG: checkAge] Middleware triggered');
+    try {
+        const { dateOfBirth } = req.body || {};
+        console.log('[DEBUG: checkAge] Received date of birth:', dateOfBirth);
+
+        if (!dateOfBirth) {
+            console.error('[ERROR: checkAge] Date of Birth is required');
+            return res.status(400).json({ error: 'Date of Birth is required' });
+        }
+
+        const dob = new Date(dateOfBirth);
+        if (Number.isNaN(dob.valueOf())) {
+            console.error('[ERROR: checkAge] Invalid Date of Birth format');
+            return res.status(400).json({ error: 'Invalid Date of Birth' });
+        }
+        // Prevent future dates
+        if (dob > new Date()) {
+            console.error('[ERROR: checkAge] DOB is in the future');
+            return res.status(400).json({ error: 'Invalid Date of Birth' });
+        }
+
+        // 365.25 days per year (approx), in ms
+        const years = Math.floor((Date.now() - dob.getTime()) / 31557600000);
+        console.log(`[INFO: checkAge] User age calculated as: ${years}`);
+
+        if (years < 18) {
+            return res.status(400).json({ error: 'User must be 18 or older' });
+        }
+        return next();
+  
+    } catch (error) {
+        
+    }
+}
+
+module.exports = {checkJwtToken, checkPassword, checkAge};
