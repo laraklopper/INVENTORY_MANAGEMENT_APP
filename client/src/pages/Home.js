@@ -5,8 +5,11 @@ import Header from '../components/Header';
 export default function Home({currentUser}) {
   return (
     <>
-    <Container>
+    <Container id='homeContainer'>
         <Header heading='HOME' currentUser={currentUser}/>
+        <section>
+          
+        </section>
     </Container>
     </>
   )
