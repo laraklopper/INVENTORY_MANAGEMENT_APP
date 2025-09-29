@@ -1,0 +1,11 @@
+/* HEADER */
+.header {
+    display: flex;
+    flex-direction: column;
+    background-color: #a9a9a9;
+    margin: 10px 0px 10px 0px;
+    padding: 10px;
+    height: fit-content;
+}
+/* MAIN HEADER */
+/* LOGGEDIN HEADER */

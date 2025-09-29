@@ -1,7 +1,13 @@
 import React from 'react'
-
-export default function LandingPage() {
+import Container from 'react-bootstrap/Container';
+import MainHeader from '../components/MainHeader';
+export default function Home() {
   return (
-    <div>LandingPage</div>
+    <>
+    <Container>
+      <MainHeader />
+    </Container>
+    </>
   )
 }
+
