@@ -67,7 +67,7 @@ export default function MainHeader({mainHeading}) {
                       <nav role="navigation" aria-label="Navigation Bar" className='navigation'>
                           <ul id='navbar'>
                             <li className='refLink'>
-                                <Link className='/'>HOME</Link>
+                                <Link className='refLink' to='/'>HOME</Link>
                             </li>
                               {/* Link to Login page */}
                               <li className='linkItem'>
