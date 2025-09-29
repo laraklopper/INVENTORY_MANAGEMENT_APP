@@ -129,7 +129,7 @@ export default function App() {
     setCurrentUser(null);
     navigate('/');
     
-  },[])
+  },[navigate])
   //==========================================
   return (
     <>
@@ -153,21 +153,23 @@ export default function App() {
                 <DashBoard
                 users={users}
                 currentUser={currentUser}
+                logout={logout}
                 />
               </ProtectedUserRoute>
             }/>
             <Route path='/account' element={
               <ProtectedUserRoute currentUser={currentUser}>
-                <Account currentUser={currentUser} logout={logout}/>
+                  <Account currentUser={currentUser} logout={logout} setUsers={setUsers} />
               </ProtectedUserRoute>
             }/>
             <Route path='/stock' element={
               <ProtectedAdminRoute
-              currentUser={currentUser}
-              setUsers={setUsers}
+                currentUser={currentUser}
+              
               >
                 <Stock
                 currentUser={currentUser}
+                logout={logout}
                 />
               </ProtectedAdminRoute>
             }

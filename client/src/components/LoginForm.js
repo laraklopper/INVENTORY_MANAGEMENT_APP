@@ -32,6 +32,7 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
                         value={userData.username}
                         placeholder='USERNAME'
                         required
+                        autoComplete='off'
                         onChange={handleLoginInput}
                         aria-label='loginInput'
                         aria-required='true'

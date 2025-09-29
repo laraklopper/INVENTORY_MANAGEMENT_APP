@@ -1,13 +1,15 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Header from '../components/Header';
 
-export default function Stock({currentUser}) {
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+export default function Stock({currentUser, logout}) {
   return (
     <>
-    <Container>
+  
         <Header currentUser={currentUser}/>
-    </Container>
+  <section></section>
+  <Footer currentUser={currentUser} logout={logout}/>
     </>
   )
 }
