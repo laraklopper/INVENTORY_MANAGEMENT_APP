@@ -131,7 +131,7 @@ router.post('/register', async (req, res) => {
             contactDetails = {},
             dateOfBirth,
             password,
-            admin: adminFromBody, // Optional explicit admin flag allowed from body; will also be computed by position
+            // admin: adminFromBody, // Optional explicit admin flag allowed from body; will also be computed by position
         } = req.body || {};
 
         const { firstName, lastName } = fullName || {};
@@ -147,55 +147,71 @@ router.post('/register', async (req, res) => {
         if (!contactNumber) missingFields.push('Contact Number');
         if (!password) missingFields.push('Password');
 
-        if (missingFields.length > 0) {
-            console.error(`[ERROR: userRoutes.js, /register] The following fields are required: ${missingFields.join(', ')}`);
-            return res.status(400).json({ message: 'All required fields must be provided.' });
-        }
-
-        // Normalize inputs
-        const normalizedEmail = String(email).trim().toLowerCase();
-        const normalizedContact = String(contactNumber).trim();
-        const normalizedUsername = String(username).trim();
-        const normalizedCompany = String(companyName).trim();
-
-        // Check if a user already exists with the same username, email or contact number
-        const existingUser = await User.findOne({
-            $or: [
-                { username: normalizedUsername },
-                { 'contactDetails.email': normalizedEmail },
-                { 'contactDetails.contactNumber': normalizedContact },
-            ],
-        });
-
-        //conditional rendering to check if user already exists
-        console.log('[DEBUG: userRoutes.js, /register] Existing user:', existingUser);
-       
-        if (existingUser) {
-            console.error('[ERROR: userRoutes.js, /register] User with this username, email or contact number already exists');
-            return res.status(409).json({
-                message: 'A user with this username, email or contact number already exists.'
+        if (missing.length > 0) {
+            console.error('[ERROR /register] Missing fields:', missing);
+            return res.status(400).json({
+                success: false,
+                message: 'All required fields must be provided.',
+                missingFields: missing,
             });
         }
-        const computedIsAdmin =
-            typeof adminFromBody === 'boolean'
-                ? adminFromBody
-                : position === 'manager' || position === 'admin';
 
 
-        // Create and save a new user instance
+        // ---- Normalize inputs ----
+        const normalized = {
+            username: String(username).trim(),
+            companyName: String(companyName).trim(),
+            email: String(email).trim().toLowerCase(),
+            contactNumber: String(contactNumber).trim(),
+            firstName: String(firstName).trim(),
+            lastName: String(lastName).trim(),
+            password: String(password), 
+        };
+
+        const allowedPositions = ['manager', 'admin', 'clerk', 'viewer'];
+        const safePosition = allowedPositions.includes(position) ? position : 'viewer';
+
+        // Check if a user already exists with the same username, email or contact number
+        const existing = await User.findOne({
+            $or: [
+                { username: normalized.username },
+                { 'contactDetails.email': normalized.email },
+                { 'contactDetails.contactNumber': normalized.contactNumber },
+            ],
+        }).select('username contactDetails.email contactDetails.contactNumber').lean();
+        //conditional rendering to check if user already exists
+        console.log('[DEBUG: userRoutes.js, /register] Existing user:', existingUser);
+        if (existing) {
+            let conflictField = 'username/email/contactNumber';
+            if (existing.username === normalized.username) conflictField = 'username';
+            else if (existing?.contactDetails?.email === normalized.email) conflictField = 'email';
+            else if (existing?.contactDetails?.contactNumber === normalized.contactNumber) conflictField = 'contactNumber';
+
+            console.error(`[ERROR /register] Duplicate ${conflictField}`);
+            return res.status(409).json({
+                success: false,
+                message: `A user with this ${conflictField} already exists.`,
+                conflictField,
+            });
+        }
+        const isAdmin = (safePosition === 'admin' || safePosition === 'manager');
+
+
+        // ---- Create user ----
         const newUser = new User({
-            username: normalizedUsername,
-            fullName: { firstName, lastName },
-            companyName: normalizedCompany,
-            position: position || 'viewer',
+            username: normalized.username,
+            companyName: normalized.companyName,
+            position: safePosition,
+            fullName: { firstName: normalized.firstName, lastName: normalized.lastName },
             contactDetails: {
-                email: normalizedEmail,
-                contactNumber: normalizedContact,
+                email: normalized.email,
+                contactNumber: normalized.contactNumber,
             },
-            dateOfBirth,
-            password,
-            admin: !!computedIsAdmin,
+            dateOfBirth, // rely on schema validation/format
+            password: normalized.password, 
+            admin: isAdmin,
         });
+
 
 
         const savedUser = await newUser.save();
@@ -210,18 +226,25 @@ router.post('/register', async (req, res) => {
                 isAdmin: !!savedUser.admin,
             },
             secretKey,
-            { 
-                expiresIn: expirationTime, 
-                algorithm: jwtAlgorithm 
+            {
+                expiresIn: expirationTime,
+                algorithm: jwtAlgorithm,
             }
         );
-
-        console.log('[INFO: userRoutes.js, /register] New user created:', savedUser);
+        console.log('[INFO /register] Created user:', savedUser.username);
         return res.status(201).json({
+            success: true,
             token,
-            userId: savedUser._id,
-            fullName: savedUser.fullName,
-            isAdmin: !!savedUser.admin,
+            user: {
+                _id: savedUser._id,
+                username: savedUser.username,
+                fullName: savedUser.fullName,
+                companyName: savedUser.companyName,
+                position: savedUser.position,
+                admin: !!savedUser.admin,
+                contactDetails: savedUser.contactDetails,
+                dateOfBirth: savedUser.dateOfBirth,
+            },
         });
     } catch (error) {
         console.error('[ERROR: userRoutes.js, /register]', error.message);

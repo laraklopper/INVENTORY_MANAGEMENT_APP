@@ -24,7 +24,7 @@ app.use(cors());
 app.use(helmet());
 
 //================MOUNT ROUTES========
-app.use('/user', userRouter )
+app.use('/users', userRouter )
 mongoose.set('strictPopulate', false);
 
 //==========START THE SERVER================

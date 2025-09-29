@@ -26,58 +26,26 @@ export default function Register({setError}) {
 
     const addUser = useCallback(async () => {
       try {
-        const missing =
-          !newUserData.username ||
-          !newUserData.companyName ||
-          !newUserData.position ||
-          !newUserData.fullName.firstName ||
-          !newUserData.fullName.lastName ||         
-          !newUserData.contactDetails.email ||
-          !newUserData.contactDetails.contactNumber ||
-          !newUserData.dateOfBirth ||
-          !newUserData.password;
 
-          if (missing) {
-            setError?.('All fields are required')
-            return
-          }
-
-        const payload = {
-          ...newUserData,
-          username: newUserData.username.trim(),
-          companyName: newUserData.companyName.trim(),
-          position: newUserData.position,
-          fullName: {
-            firstName: newUserData.fullName.firstName.trim(),
-            lastName: newUserData.fullName.lastName.trim(),
-          },
-          contactDetails: {
-            email: newUserData.contactDetails.email.trim(),
-            contactNumber: newUserData.contactDetails.contactNumber.trim(),
-          },          
-        };
 
         const token = localStorage.getItem('token')
         const response = await fetch (`http://localhost:3001/users/register`, {
           method: 'POST',
-          // mode: 'cors',
+          mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(newUserData)
         })
 
         const data = await response.json();
         // Response handling
         if (!response.ok) {
-          throw new Error(data.message || `Error adding user (Status: ${response.status})`);
+          throw new Error('Error adding user');
         }
 
-        // Store token if the backend returns it
-        if (data.token) {
-          localStorage.setItem('token', data.token);// Parse the response data as JSON
-        }
+        
 
         // Reset form fields after successful registration
         setNewUserData({
