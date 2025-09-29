@@ -6,24 +6,40 @@
     margin: 10px 0px 10px 0px;
     padding: 10px;
     height: fit-content;
+    font-family: "Winky Rough", sans-serif;
 }
 #headingCol{
     display: flex;
 }
 /* NAVIGATION BAR */
+#headerStack {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+}
+#navBlock{
+    width: 100%;
+        display: flex;
+        justify-content: center;
+}
 #navigation {
     display: flex;
     align-items: center;
     justify-content: center;
+        width: 100%;
 }
 
 #navbar {
+    width: 100%;
     list-style-type: none;
     display: flex;
     gap: 15px;
+    justify-content: center;
 }
+
 /* MAIN HEADER */
 .mainHeading{
     text-align: center;
+    font-family: "Permanent Marker", cursive;
 }
 /* LOGGEDIN HEADER */

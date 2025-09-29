@@ -56,7 +56,7 @@ export default function Header({currentUser, heading}) {
               </Col>
           </Row>
           <Row>
-              <Col>1 of 3</Col>
+              <Col></Col>
               <Col xs={6}>
               <nav>
                 <ul>

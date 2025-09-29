@@ -12,3 +12,8 @@ html,
   background-color: #8F7900;
 
 }
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

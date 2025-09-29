@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import '../CSS/Header.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Stack from 'react-bootstrap/Stack';
 import {Link} from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 
@@ -17,14 +18,55 @@ export default function MainHeader({mainHeading}) {
 
     const formattedTime = time.toLocaleTimeString()
   return (
-    <header className='header'>
+    <header className='header' >
         
           <Row>
               <Col></Col>
               <Col xs={6} id='headingCol' >
-                  <h1 id='heading'>INVENTORY MANAGER</h1>
+                  
               </Col>
               <Col  >
+                
+              </Col>
+          </Row>
+          <Row>
+              <Col></Col>
+              <Col xs={6}>
+                  <Stack gap={3} id='headerStack'>
+                      <div className="p-2">
+                          <h1 id='heading'>INVENTORY MANAGER</h1>
+                          
+                      </div>
+                      <div className="p-2">
+                          <h1 className='mainHeading' aria-label="Page Title" aria-live="polite">
+                              {mainHeading}
+                          </h1>
+                      </div>
+                      <div className="p-2" id='navBlock'>
+                          <nav role="navigation" aria-label="Navigation Bar" className='navigation'>
+                              <ul id='navbar'>
+                                  <li className='refLink'>
+                                      <Link className='refLink' to='/'>HOME</Link>
+                                  </li>
+                                  {/* Link to Login page */}
+                                  <li className='linkItem'>
+                                      <Link className='refLink' to='/login'>
+                                          LOGIN
+                                      </Link>
+                                  </li>
+                                  {/* Link to Registration Page */}
+                                  <li className='linkItem'>
+                                      <Link className='refLink' to='/reg'>
+                                          REGISTRATION
+                                      </Link>
+                                  </li>
+                              </ul>
+                          </nav>
+                      </div>
+                  </Stack>
+                 
+              </Col>
+              <Col>
                   <Card id='headerTimeCard'>
                       <Card.Body id='timeCardBody'>
                           <h2
@@ -38,36 +80,9 @@ export default function MainHeader({mainHeading}) {
               </Col>
           </Row>
           <Row>
-              <Col></Col>
-              <Col xs={6}>
-                  <h1 className='mainHeading' aria-label="Page Title" aria-live="polite">
-                      {mainHeading}
-                  </h1>
-              </Col>
-              <Col></Col>
-          </Row>
-          <Row>
               <Col xs={6} md={4}></Col>
               <Col xs={6} md={4}>
-                      <nav role="navigation" aria-label="Navigation Bar" className='navigation'>
-                          <ul id='navbar'>
-                            <li className='refLink'>
-                                <Link className='refLink' to='/'>HOME</Link>
-                            </li>
-                              {/* Link to Login page */}
-                              <li className='linkItem'>
-                                  <Link className='refLink' to='/login'>
-                                      LOGIN
-                                  </Link>
-                              </li>
-                              {/* Link to Registration Page */}
-                              <li className='linkItem'>
-                                  <Link className='refLink' to='/reg'>
-                                      REGISTRATION
-                                  </Link>
-                              </li>
-                          </ul>
-                      </nav>
+                      
                  
               </Col>
               <Col xs={6} md={4}></Col>
