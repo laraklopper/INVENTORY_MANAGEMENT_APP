@@ -49,11 +49,12 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
                               onChange={handleLoginInput}
                               autoComplete='current-password'
                               required
+                              placeholder='PASSWORD'
                               aria-required='true'
                               onFocus={() => setPasswordMsg(true)}
                               onBlur={() => setPasswordMsg(false)}
                         />
-                        <div>
+                        <div id='showPassword'>
                             <Button 
                               variant='warning'
                               type='button'

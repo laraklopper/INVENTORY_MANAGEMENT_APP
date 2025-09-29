@@ -2,3 +2,47 @@
     width: 100%;
     background-color: #e0bf00;
 }
+#loginForm {
+    padding: 15px 15px 10px 15px;
+    border-radius: 10px;
+    margin: 10px 5px 10px 5px;
+    display: grid;
+    justify-content: center;
+    background-color: #F5EC4C;
+}
+#loginDetails {
+    border: 5px solid #000000;
+    border-radius: 15px;
+    background-color: #708090;
+    margin: 10px;
+    padding: 15px 10px 15px 10px;
+    display: grid;
+    justify-content: center;
+    width: 300px;
+}
+.loginLabel {
+    display: flex;
+    margin: 2px;
+    padding: 3px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+}
+.input {
+    width: 220px;
+    font-family: "Martian Mono", monospace;
+    padding: 5px;
+    border: 2px solid #000000;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 600;
+    color: #000000;
+}
+
+#showPassword {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}

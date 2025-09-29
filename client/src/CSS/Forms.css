@@ -1,0 +1,30 @@
+.labelText {
+    font-weight: 900;
+    font-family: "Signika", sans-serif;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+#newPasswordDisplayBtn {
+    color: black;
+    font-family: "Martian Mono", monospace;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    padding: 7px;
+    margin: 0px 0px 0px 0px;
+    width: 180px;
+}
+#passwordDisplayBtn {
+    color: black;
+    font-family: "Martian Mono", monospace;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    padding: 7px;
+    margin: 0px 0px 0px 0px;
+    width: 180px;
+}
