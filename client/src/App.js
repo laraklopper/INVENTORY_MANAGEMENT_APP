@@ -10,6 +10,7 @@ import ProtectedAdminRoute from './protectedRoutes.js/ProtectedAdminRoute';
 import Stock from './pages/Stock';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Account from './pages/Account';
 
 
 export default function App() {
@@ -35,7 +36,7 @@ export default function App() {
 
   const navigate = useNavigate()
 
-  
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -153,6 +154,11 @@ export default function App() {
                 users={users}
                 currentUser={currentUser}
                 />
+              </ProtectedUserRoute>
+            }/>
+            <Route path='/account' element={
+              <ProtectedUserRoute currentUser={currentUser}>
+                <Account currentUser={currentUser} logout={logout}/>
               </ProtectedUserRoute>
             }/>
             <Route path='/stock' element={

@@ -65,6 +65,11 @@ export default function Header({currentUser, heading}) {
                                   <Link className='refLink' to='/'>HOME</Link>
                               </li>
                           )}
+                          {currentUser && (
+                            <li>
+                                <Link className='refLink' to='/account'>ACCOUNT</Link>
+                            </li>
+                          )}
                           {currentUser?.admin && (
                             <li className='linkItem'>
                                 <Link className='refLink' to='/stock'>STOCK</Link>

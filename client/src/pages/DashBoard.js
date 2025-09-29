@@ -1,10 +1,10 @@
 import React from 'react'
 import Header from '../components/Header'
 
-export default function DashBoard() {
+export default function DashBoard({currentUser, logout}) {
   return (
     <>
-    <Header heading='HOME'/>
+    <Header heading='HOME' currentUser={currentUser}/>
     </>
   )
 }
