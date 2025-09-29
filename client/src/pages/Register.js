@@ -38,12 +38,13 @@ export default function Register({setError}) {
           body: JSON.stringify(newUserData)
         })
 
-        const data = await response.json();
-        // Response handling
+        const data = await response.json().catch(() => ({}));        // Response handling
         if (!response.ok) {
-          throw new Error('Error adding user');
+          // Bubble up server details when available
+          const msg = data?.message || `Error adding user (HTTP ${response.status})`;
+          // You can also inspect data.missingFields or data.conflictField if present
+          throw new Error(msg);
         }
-
         
 
         // Reset form fields after successful registration

@@ -28,10 +28,6 @@ const checkJwtToken = (req, res, next) => {
         const decoded = jwt.verify(token, secretKey)
         req.user = decoded;
 
-        // Attach decoded payload
-        req.user = decoded;               // e.g. { userId, isAdmin, fullName, iat, exp }
-        req.userId = decoded.userId;      // convenience alias for your routes
-        req.isAdmin = !!decoded.isAdmin;  // another helpful alias
         next()
 
 
