@@ -147,12 +147,12 @@ router.post('/register', async (req, res) => {
         if (!contactNumber) missingFields.push('Contact Number');
         if (!password) missingFields.push('Password');
 
-        if (missing.length > 0) {
-            console.error('[ERROR /register] Missing fields:', missing);
+        if (missingFields.length > 0) {
+            console.error('[ERROR /register] Missing fields:', missingFields);
             return res.status(400).json({
                 success: false,
                 message: 'All required fields must be provided.',
-                missingFields: missing,
+                missingFields: missingFields,
             });
         }
 
@@ -172,7 +172,7 @@ router.post('/register', async (req, res) => {
         const safePosition = allowedPositions.includes(position) ? position : 'viewer';
 
         // Check if a user already exists with the same username, email or contact number
-        const existing = await User.findOne({
+        const existingUser = await User.findOne({
             $or: [
                 { username: normalized.username },
                 { 'contactDetails.email': normalized.email },
@@ -181,7 +181,7 @@ router.post('/register', async (req, res) => {
         }).select('username contactDetails.email contactDetails.contactNumber').lean();
         //conditional rendering to check if user already exists
         console.log('[DEBUG: userRoutes.js, /register] Existing user:', existingUser);
-        if (existing) {
+        if (existingUser) {
             let conflictField = 'username/email/contactNumber';
             if (existing.username === normalized.username) conflictField = 'username';
             else if (existing?.contactDetails?.email === normalized.email) conflictField = 'email';

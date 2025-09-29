@@ -14,7 +14,6 @@ export default function Register({setError}) {
         firstName: '',
         lastName: '',
       },
-
       contactDetails: {
         email: '',
         contactNumber: '',
