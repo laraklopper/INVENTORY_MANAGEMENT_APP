@@ -22,11 +22,12 @@
         display: flex;
         justify-content: center;
 }
-#navigation {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-        width: 100%;
+.navigation {
+        display: flex;
+            align-items: center;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
 }
 
 #navbar {
@@ -35,8 +36,16 @@
     display: flex;
     gap: 15px;
     justify-content: center;
+    margin:0px;
+    padding: 0px;
 }
-
+.refLink{
+    text-decoration: none;
+    font-weight: 700;
+   
+    font-size: 18px;
+    color: #134e50e6;
+}
 /* MAIN HEADER */
 .mainHeading{
     text-align: center;

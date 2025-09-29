@@ -70,12 +70,13 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
                   </div>
                   {passwordMsg && (
                       <div className="p-2" id='messageBlock'>
-                          <h6 className='msgText'>
+                         <i> <h6 className='msgText'>
                               <strong>We will never share <br /> your password</strong>
                           </h6>
+                      </i>
                       </div>
                   )}
-                  <div className="p-2">
+                  <div className="p-2" id='loginBtnBlock'>
                     <Button
                     variant='light'
                     type='submit'
