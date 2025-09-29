@@ -17,3 +17,10 @@ html,
   display: flex;
   justify-content: center;
 }
+#homePageCard{
+  background-color: transparent;
+  border: none;
+  display: flex;
+  height: 100%;
+    width: 100%;
+}
