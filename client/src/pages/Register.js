@@ -59,7 +59,7 @@ export default function Register({setError}) {
 
         const response = await fetch (`http://localhost:3001/users/register`, {
           method: 'POST',
-          mode: 'cors',
+          // mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -113,6 +113,7 @@ export default function Register({setError}) {
             <RegistrationForm
               newUserData={newUserData}
               setNewUserData={setNewUserData}
+              addUser={addUser}
             />
           </div>
         </section>

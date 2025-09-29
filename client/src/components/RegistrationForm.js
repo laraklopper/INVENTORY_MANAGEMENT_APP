@@ -77,7 +77,8 @@ export default function RegistrationForm({newUserData, setNewUserData, addUser})
                     className='input'
                     type='text'
                     name='username'
-                    value={newUserData}
+                    value={newUserData.username}
+                    placeholder='USERNAME'
                     aria-label='New Username Input'
                     aria-required='true'
                     onChange={handleInputChange}

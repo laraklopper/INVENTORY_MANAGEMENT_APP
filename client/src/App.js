@@ -117,7 +117,10 @@ export default function App() {
             <>
             <Route exact path='/' element={
               <ProtectedUserRoute currentUser={currentUser}>
-                <DashBoard/>
+                <DashBoard
+                users={users}
+                currentUser={currentUser}
+                />
               </ProtectedUserRoute>
             }/>
             <Route path='/stock' element={
