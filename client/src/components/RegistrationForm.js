@@ -5,10 +5,14 @@ import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 
-export default function RegistrationForm({newUserData, setNewUserData}) {
+export default function RegistrationForm({newUserData, setNewUserData, addUser}) {
     const [viewPassword, setViewPassword] = useState(false)
     const [showPasswordMsg, setShowPasswordMsg] = useState(false)
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        addUser()
+    }
     const handleInputChange = (event) => {
         const {name, value} = event.target;
 
@@ -63,7 +67,7 @@ export default function RegistrationForm({newUserData, setNewUserData}) {
 
 //===============JSX RENDERING========================
   return (
-    <form id='registrationForm' aria-label='registrationForm'>
+    <form id='registrationForm' aria-label='registrationForm' onSubmit={handleSubmit}>
           <Row id='regisRow1'>
               <Col xs={6} md={4} id='regisCol1'>
                   <label className='regisLabel'>
@@ -118,7 +122,7 @@ export default function RegistrationForm({newUserData, setNewUserData}) {
           </Row>
           <Row id='regisRow2'>
               <Col xs={12} md={8}>
-                  <Stack gap={3}>
+                  <Stack gap={3} id='nameStack'>
                       <div  id='fullName'>
                         <label className='regisLabel'>
                             <p className='labelText'>FIRST NAME:</p>
