@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 export default function RegistrationForm({newUserData, setNewUserData, addUser}) {
     const [viewPassword, setViewPassword] = useState(false)
     const [showPasswordMsg, setShowPasswordMsg] = useState(false)
+    const [contactMsg, setContactMsg] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -85,7 +86,7 @@ export default function RegistrationForm({newUserData, setNewUserData, addUser})
                   </label>
               </Col>
               <Col xs={6} md={4} id='regisCol2'>
-                  <label className='regisLabel' htmlFor=''>
+                  <label className='regisLabel' htmlFor='companyNameInput'>
                       <p className='labelText'>COMPANY NAME:</p>
                       <input 
                       className='input'
@@ -121,7 +122,7 @@ export default function RegistrationForm({newUserData, setNewUserData, addUser})
               </Col>
           </Row>
           <Row id='regisRow2'>
-              <Col xs={12} md={8}>
+              <Col xs={12} md={8} id='regisCol4'>
                   <Stack gap={3} id='nameStack'>
                       <div  id='fullName'>
                         <label className='regisLabel'>
@@ -158,11 +159,11 @@ export default function RegistrationForm({newUserData, setNewUserData, addUser})
                       </div>
                   </Stack>
               </Col>
-              <Col xs={6} md={4}></Col>
+              <Col xs={6} md={4} id='regisCol5'></Col>
           </Row>
           <Row id='regisRow3'>
-              <Col xs={12} md={8}>
-                  <Stack gap={3}>
+              <Col xs={12} md={8} id='regisCol6'>
+                  <Stack gap={3} role='group' id='contactStack'>
                       <div  id='contactDetails'>
                         <label className='regisLabel'>
                             <p className='labelText'>EMAIL:</p>
@@ -178,6 +179,8 @@ export default function RegistrationForm({newUserData, setNewUserData, addUser})
                                   placeholder='EMAIL'
                                   aria-required='true'
                                   aria-label='Email Input'
+                                  onFocus={() => setContactMsg(true)}
+                                  onBlur={() => setContactMsg(false)}
                             />
                         </label>
                           <label className='regisLabel'>
@@ -194,12 +197,21 @@ export default function RegistrationForm({newUserData, setNewUserData, addUser})
                                   aria-required='true'
                                   aria-label='New Contact Number Input'
                                   id='newContactNumberInput'
+                                  onFocus={() => setContactMsg(true)}
+                                  onBlur={() => setContactMsg(false)}
                               />
                           </label>
                       </div>
                   </Stack>
               </Col>
-              <Col xs={6} md={4}>
+              {contactMsg &&
+                  <Col xs={6} md={4} id='regisCol7'>
+                      <h6 id='contactMsg'>We will never share your contact details</h6>
+                  </Col>
+              }
+          </Row>
+          <Row id='regisRow4'>
+              <Col xs={6} md={4} id='regisCol8'>
                   <label htmlFor='dateOfBirthInput' className='regisLabel'>
                       <p className='labelText'>DATE OF BIRTH:</p>
                       <input
@@ -217,9 +229,7 @@ export default function RegistrationForm({newUserData, setNewUserData, addUser})
                       />
                   </label>
               </Col>
-          </Row>
-          <Row id='regisRow4'>
-              <Col xs={12} md={8}>
+              <Col xs={12} md={8} id='regisCol9'>
                   <label className='regisLabel'>
                     <p className='labelText'>PASSWORD:</p>
                     <input 
@@ -250,18 +260,24 @@ export default function RegistrationForm({newUserData, setNewUserData, addUser})
                               {viewPassword ? 'HIDE PASSWORD' : 'SHOW PASSWORD'}
                         </Button>
                     </div>
+                    
                   </label>
               </Col>
-              {showPasswordMsg && (
-                  <Col xs={6} md={4}>
-                      <h6 id='passwordMsg'>We will never share your password</h6>
-                  </Col>
-              )}
           </Row>
           <Row id='regisRow5'>
-              <Col>
+              <Col xs={6} md={4} id='regisCol11'></Col>
+              {showPasswordMsg && (
+                  <Col xs={12} md={8} id='regisCol12'>           
+                      <h6 id='passwordMsg'>We will never share your password</h6>                
+                 </Col> 
+            )}
+          </Row>
+          <Row id='regisRow6'>
+              <Col id='regisCol13'>
                   <Stack direction="horizontal" gap={3} id='regisBtnStack'>
-                      <div className="p-2"></div>
+                      <div className="p-2">
+                      
+                      </div>
                       <div className="p-2 ms-auto">
                         <Button
                         type='button'

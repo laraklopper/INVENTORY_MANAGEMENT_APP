@@ -8,7 +8,7 @@
 #register{
     padding: 5px 5px 10px 5px;
         margin: 0px;
-    background-color: #7b7373;
+    background-color: darkgray;
         border-radius: 5px;
 }
 .regisLabel{
@@ -25,29 +25,45 @@
     gap: 15px;
 }
 #regisRow1{
+    display: flex;
+    align-items: baseline;
     padding: 10px 0px 10px 0px;
         margin: 10px 0px 10px 0px;
 }
 #regisRow2{
+    display: flex;
+        align-items: baseline;
     padding: 10px 0px 10px 0px;
         margin: 10px 0px 10px 0px;
 }
 #regisRow3 {
-    padding: 10px 0px 10px 0px;
+    display: flex;
+        align-items: baseline;
+    padding: 10px 0px 0px 0px;
     margin: 10px 0px 10px 0px;
 }
 #regisRow4 {
+    display: flex;
+        align-items: baseline;
     padding: 10px 0px 10px 0px;
     margin: 10px 0px 10px 0px;
 }
 #regisRow5 {
+    display: flex;
+        align-items: baseline;
+    padding: 10px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
+}
+#regisRow6{
+    display: flex;
+    align-items: baseline;
     padding: 10px 0px 10px 0px;
     margin: 10px 0px 10px 0px;
 }
 #registrationForm {
     padding: 10px;
     margin: 10px 5px 10px 5px;
-    background-color: #c0c0c0;
+    background-color: gray;
     border-radius: 5px;
 
 }
@@ -56,12 +72,27 @@
     padding: 0px 0px 10px 0px;
     width: 100%;
 }
+/* text */
+#passwordMsg {
+
+    text-transform: uppercase;
+    font-family: "Signika", sans-serif;
+    color: #470D09;
+font-weight: 700;
+}
+
+#contactMsg {
+    text-transform: uppercase;
+    font-family: "Signika", sans-serif;
+    color: #470D09;
+    font-weight: 700;
+}
 /* Buttons */
 #clearRegisBtn {
     color: #000000;
     display: block;
     width: 180px;
-    font-family: "Martian Mono", monospace;
+    font-family: "Ubuntu Mono", monospace;
     border: none;
     /* font-size: 16px; */
     font-weight: 700;
@@ -71,7 +102,7 @@
     color: #000000;
     display: block;
     width: 180px;
-    font-family: "Martian Mono", monospace;
+    font-family: "Ubuntu Mono", monospace;
     border: none;
     /* font-size: 16px; */
     font-weight: 700;
