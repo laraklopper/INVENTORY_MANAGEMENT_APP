@@ -77,6 +77,7 @@ export default function RegistrationForm({newUserData, setNewUserData, addUser})
                     className='input'
                     type='text'
                     name='username'
+                    autoComplete='username'
                     value={newUserData.username}
                     placeholder='USERNAME'
                     aria-label='New Username Input'

@@ -57,13 +57,15 @@ export default function Register({setError}) {
           },          
         };
 
+        const token = localStorage.getItem('token')
         const response = await fetch (`http://localhost:3001/users/register`, {
           method: 'POST',
           // mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
           },
-          body: `Bearer ${payload}`
+          body: JSON.stringify(payload)
         })
 
         const data = await response.json();
