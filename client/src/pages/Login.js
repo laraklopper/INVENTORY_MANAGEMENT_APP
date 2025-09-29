@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import './pageCss/Login.css'
-import Container from 'react-bootstrap/Container';
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import MainHeader from '../components/MainHeader';
@@ -45,7 +45,6 @@ export default function Login({userData, setUserData, setError, setLoggedIn}) {
   },[setError, setLoggedIn, userData])
   return (
     <>
-    <Container id='loginContainer'>
         <MainHeader mainHeading='LOGIN'/>
         <section id='loginSection'>
           <Row id='loginFormRow'>
@@ -61,7 +60,7 @@ export default function Login({userData, setUserData, setError, setLoggedIn}) {
           </Row>
 
         </section>
-    </Container>
+    
     </>
   )
 }

@@ -254,9 +254,9 @@ export default function RegistrationForm({newUserData, setNewUserData}) {
                   </Col>
               )}
           </Row>
-          <Row>
+          <Row id='regisRow5'>
               <Col>
-                  <Stack direction="horizontal" gap={3}>
+                  <Stack direction="horizontal" gap={3} id='regisBtnStack'>
                       <div className="p-2"></div>
                       <div className="p-2 ms-auto">
                         <Button

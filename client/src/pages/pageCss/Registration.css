@@ -1,3 +1,16 @@
+#regisSection {
+    background-color: #A39E33;
+    margin: 10px 0px 10px 0px;
+    padding: 10px;
+    border: none;
+
+}
+#register{
+    padding: 5px 5px 10px 5px;
+        margin: 0px;
+    background-color: #7b7373;
+        border-radius: 5px;
+}
 .regisLabel{
     display: flex;
     gap: 10px;
@@ -26,4 +39,40 @@
 #regisRow4 {
     padding: 10px 0px 10px 0px;
     margin: 10px 0px 10px 0px;
+}
+#regisRow5 {
+    padding: 10px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
+}
+#registrationForm {
+    padding: 10px;
+    margin: 10px 5px 10px 5px;
+    background-color: #c0c0c0;
+    border-radius: 5px;
+
+}
+#regisBtnStack {
+    margin: 0px;
+    padding: 0px 0px 10px 0px;
+    width: 100%;
+}
+/* Buttons */
+#clearRegisBtn {
+    color: #000000;
+    display: block;
+    width: 180px;
+    font-family: "Martian Mono", monospace;
+    border: none;
+    /* font-size: 16px; */
+    font-weight: 700;
+}
+
+#registrationBtn {
+    color: #000000;
+    display: block;
+    width: 180px;
+    font-family: "Martian Mono", monospace;
+    border: none;
+    /* font-size: 16px; */
+    font-weight: 700;
 }

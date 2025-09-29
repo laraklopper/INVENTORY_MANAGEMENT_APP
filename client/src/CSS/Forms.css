@@ -6,9 +6,28 @@
     margin-left: 0px;
     margin-right: 0px;
 }
+/* Layout */
+#formHeadingRow {
+    display: flex;
+    padding: 10px 0px 5px 0px;
+    margin: 0px;
+    width: 100%;
+    border-radius: 10px;
+}
+.formHeading{
+    font-family: "Winky Rough", sans-serif;
+    font-weight: 600;
+}
+#formHeadingCol {
+    display: flex;
+    padding: 10px 0px 5px 0px;
+    margin: 0px;
+    justify-content: center;
+}
+
 #newPasswordDisplayBtn {
     color: black;
-    font-family: "Martian Mono", monospace;
+    font-family: "Ubuntu Mono", monospace;
     font-size: 16px;
     display: flex;
     justify-content: center;
@@ -19,7 +38,7 @@
 }
 #passwordDisplayBtn {
     color: black;
-    font-family: "Martian Mono", monospace;
+    font-family: "Ubuntu Mono", monospace;
     font-size: 16px;
     display: flex;
     justify-content: center;

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './pageCss/Registration.css'
-import Container from 'react-bootstrap/Container';
 import MainHeader from '../components/MainHeader';
 import RegistrationForm from '../components/RegistrationForm';
+import FormHeadings from '../components/FormHeadings';
 
 
 export default function Register() {
@@ -25,17 +25,17 @@ export default function Register() {
     })
   return (
     <>
-    <Container>
+    
         <MainHeader mainHeading='REGISTER'/>
-        <section>
-          <RegistrationForm
-          newUserData={newUserData}
-          setNewUserData={setNewUserData}
-          />
-     
-
+        <section id='regisSection'>
+          <div id='register'>
+            <FormHeadings formHeading='REGISTER'/>
+            <RegistrationForm
+              newUserData={newUserData}
+              setNewUserData={setNewUserData}
+            />
+          </div>
         </section>
-    </Container>
     </>
   )
 }
