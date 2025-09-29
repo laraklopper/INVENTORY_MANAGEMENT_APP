@@ -3,7 +3,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken')
 const router = express.Router();
 const User = require('../models/userSchema');
-const { checkJwtToken } = require('./middleware');
+const { checkJwtToken, checkAge, checkPassword } = require('./middleware');
 
 const secretKey = process.env.JWT_SECRET_KEY || 'secretKey';
 const expirationTime = process.env.JWT_EXPIRATION || '12';
@@ -119,7 +119,7 @@ router.post('/login', async (req,res) => {
     }
 })
 
-router.post('/register', async (req, res) => {
+router.post('/register', checkAge, checkPassword, async (req, res) => {
     console.log(req.body);
     try {
         // Extract incoming data from the request body
@@ -131,12 +131,12 @@ router.post('/register', async (req, res) => {
             contactDetails = {},
             dateOfBirth,
             password,
-            // admin: adminFromBody, // Optional explicit admin flag allowed from body; will also be computed by position
         } = req.body || {};
 
         const { firstName, lastName } = fullName || {};
         const { email, contactNumber } = contactDetails || {};
 
+        // 2) Collect missing fields early for a friendly 400
         const missingFields = [];
         if (!username) missingFields.push('Username')
         if (!companyName) missingFields.push('Company Name')
@@ -152,12 +152,12 @@ router.post('/register', async (req, res) => {
             return res.status(400).json({
                 success: false,
                 message: 'All required fields must be provided.',
-                missingFields: missingFields,
+                missingFields,
             });
         }
 
 
-        // ---- Normalize inputs ----
+        //3) Normalize inputs
         const normalized = {
             username: String(username).trim(),
             companyName: String(companyName).trim(),
@@ -166,8 +166,10 @@ router.post('/register', async (req, res) => {
             firstName: String(firstName).trim(),
             lastName: String(lastName).trim(),
             password: String(password), 
+            dateOfBirth, // allow Mongoose to parse Date; frontend should send YYYY-MM-DD
         };
 
+        // 4) Enforce allowed positions; default to viewer
         const allowedPositions = ['manager', 'admin', 'clerk', 'viewer'];
         const safePosition = allowedPositions.includes(position) ? position : 'viewer';
 

@@ -1,11 +1,11 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-let secretKey = process.env.JWT_SECRET_KEY || 'secretKey';
-
-if (!secretKey) {
-    console.warn("[WARNING: middleware.js] JWT_SECRET_KEY not set. Using fallback key.");
+const secretKey = process.env.JWT_SECRET_KEY || 'secretKey';
+if (!process.env.JWT_SECRET_KEY) {
+    console.warn('[WARNING: middleware.js] JWT_SECRET_KEY not set. Using fallback key (INSECURE FOR PRODUCTION).');
 }
+
 
 //Middleware function to check and verify a JWT token from the 'token' header
 const checkJwtToken = (req, res, next) => {
@@ -43,9 +43,9 @@ const checkJwtToken = (req, res, next) => {
 const checkPassword = (req, res, next) => {
     console.log('[DEBUG: middleware.js checkPassword] Middleware triggered');
     try {
-        const password = req.body || {};
+        const { password } = req.body || {};
 
-        console.log('[DEBUG: middleware.js checkPassword] Password provided:', typeof password === 'string');
+        console.log('[DEBUG: checkPassword] Password provided (boolean):', Boolean(password));
 
         if (typeof password !== 'string' || password.length === 0) {
             console.error('[ERROR: middleware.js, checkPassword]: Missing Password');
