@@ -1,0 +1,29 @@
+.regisLabel{
+    display: flex;
+    gap: 10px;
+        align-items: baseline;
+}
+#fullName{
+    display: flex;
+    gap: 15px;
+}
+#contactDetails {
+    display: flex;
+    gap: 15px;
+}
+#regisRow1{
+    padding: 10px 0px 10px 0px;
+        margin: 10px 0px 10px 0px;
+}
+#regisRow2{
+    padding: 10px 0px 10px 0px;
+        margin: 10px 0px 10px 0px;
+}
+#regisRow3 {
+    padding: 10px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
+}
+#regisRow4 {
+    padding: 10px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
+}
