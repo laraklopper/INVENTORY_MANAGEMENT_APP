@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema({
                 message: (props) => `${props.value} is not a valid email address` // Custom error message for invalid emails
             }
         },
-        contactDetails:{
+        
             contactNumber: {
                 type: String,
                 trim: true,
@@ -60,7 +60,7 @@ const userSchema = new mongoose.Schema({
                     message: 'Invalid South African contact number (e.g., +27 82 123 4567 or 082 123 4567)' // Custom error message for invalid numbers
                 }
             },
-        },
+        
     },
     dateOfBirth:{
         type: Date,

@@ -185,9 +185,9 @@ router.post('/register', checkAge, checkPassword, async (req, res) => {
         console.log('[DEBUG: userRoutes.js, /register] Existing user:', existingUser);
         if (existingUser) {
             let conflictField = 'username/email/contactNumber';
-            if (existing.username === normalized.username) conflictField = 'username';
-            else if (existing?.contactDetails?.email === normalized.email) conflictField = 'email';
-            else if (existing?.contactDetails?.contactNumber === normalized.contactNumber) conflictField = 'contactNumber';
+            if (existingUser.username === normalized.username) conflictField = 'username';
+            else if (existingUser?.contactDetails?.email === normalized.email) conflictField = 'email';
+            else if (existingUser?.contactDetails?.contactNumber === normalized.contactNumber) conflictField = 'contactNumber';
 
             console.error(`[ERROR /register] Duplicate ${conflictField}`);
             return res.status(409).json({

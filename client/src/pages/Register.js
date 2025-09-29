@@ -25,17 +25,47 @@ export default function Register({setError}) {
 
     const addUser = useCallback(async () => {
       try {
+        const missing =
+          !newUserData.username ||
+          !newUserData.fullName.firstName ||
+          !newUserData.fullName.lastName ||
+          !newUserData.companyName ||
+          !newUserData.contactDetails.email ||
+          !newUserData.contactDetails.contactNumber ||
+          !newUserData.position ||
+          !newUserData.dateOfBirth ||
+          !newUserData.password;
 
+        if (missing) {
+          setError?.('All fields are required');
+          return;
+        }
 
-        const token = localStorage.getItem('token')
+        // Build payload
+        const payload = {
+          ...newUserData,
+          username: newUserData.username.trim(),
+          companyName: newUserData.companyName.trim(),
+          fullName: {
+            firstName: newUserData.fullName.firstName.trim(),
+            lastName: newUserData.fullName.lastName.trim(),
+          },
+          contactDetails: {
+            email: newUserData.contactDetails.email.trim(),
+            contactNumber: newUserData.contactDetails.contactNumber.trim(),
+          },
+          position: newUserData.position,
+        };
+
+        // const token = localStorage.getItem('token')
         const response = await fetch (`http://localhost:3001/users/register`, {
           method: 'POST',
           mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            // 'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify(newUserData)
+          body: JSON.stringify(payload)
         })
 
         const data = await response.json().catch(() => ({}));        // Response handling
@@ -50,6 +80,8 @@ export default function Register({setError}) {
         // Reset form fields after successful registration
         setNewUserData({
           username: '',
+          companyName: '',
+          position: '',
           fullName: {
             firstName: '',
             lastName: ''
@@ -59,7 +91,6 @@ export default function Register({setError}) {
             email: '',
             contactNumber: '',
           },
-          position: '',
           dateOfBirth: '',
           password: '',
         });
