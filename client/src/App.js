@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Route, Routes } from 'react-router-dom';
 import ProtectedUserRoute from './protectedRoutes.js/ProtectedUserRoute';
-import Home from './pages/Home';
+import Home from './pages/DashBoard';
 import ProtectedAdminRoute from './protectedRoutes.js/ProtectedAdminRoute';
 import Stock from './pages/Stock';
 import Login from './pages/Login';

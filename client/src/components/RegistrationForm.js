@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import '../CSS/Forms.css'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
@@ -8,8 +9,8 @@ export default function RegistrationForm() {
     const [viewPassword, setViewPassword] = useState(false)
   return (
     <form id='registrationForm'>
-          <Row>
-              <Col xs={6} md={4}>
+          <Row id='regisRow1'>
+              <Col xs={6} md={4} id='regisCol1'>
                   <label className='regisLabel'>
                     <p className='labelText'>USERNAME:</p>
                     <input
@@ -18,7 +19,7 @@ export default function RegistrationForm() {
                     />
                   </label>
               </Col>
-              <Col xs={6} md={4}>
+              <Col xs={6} md={4} id='regisCol2'>
                   <label className='regisLabel'>
                       <p className='labelText'>COMPANY NAME:</p>
                       <input 
@@ -27,7 +28,7 @@ export default function RegistrationForm() {
                       />
                   </label>
               </Col>
-              <Col xs={6} md={4}>
+              <Col xs={6} md={4} id='regisCol3'>
                   <label className="regisLabel" htmlFor="positionSelect">
                       <p className='labelText'>POSITION:</p>
                       <select
@@ -47,7 +48,7 @@ export default function RegistrationForm() {
                   </label>
               </Col>
           </Row>
-          <Row>
+          <Row id='regisRow2'>
               <Col>
                   <Stack gap={3}>
                       <div className="p-2">First item</div>
