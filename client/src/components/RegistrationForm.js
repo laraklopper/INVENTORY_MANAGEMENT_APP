@@ -63,9 +63,8 @@ export default function RegistrationForm({newUserData, setNewUserData}) {
 
 //===============JSX RENDERING========================
   return (
-    <form id='registrationForm'>
+    <form id='registrationForm' aria-label='registrationForm'>
           <Row id='regisRow1'>
-          
               <Col xs={6} md={4} id='regisCol1'>
                   <label className='regisLabel'>
                     <p className='labelText'>USERNAME:</p>
@@ -193,7 +192,6 @@ export default function RegistrationForm({newUserData, setNewUserData}) {
                                   id='newContactNumberInput'
                               />
                           </label>
-
                       </div>
                   </Stack>
               </Col>
@@ -247,7 +245,6 @@ export default function RegistrationForm({newUserData, setNewUserData}) {
                               {/* Button text based on viewPassword state*/}
                               {viewPassword ? 'HIDE PASSWORD' : 'SHOW PASSWORD'}
                         </Button>
-
                     </div>
                   </label>
               </Col>
@@ -282,7 +279,6 @@ export default function RegistrationForm({newUserData, setNewUserData}) {
                               id='registrationBtn'
                         >
                             REGISTER
-
                         </Button>
                       </div>
                   </Stack>
