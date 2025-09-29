@@ -5,12 +5,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Route, Routes } from 'react-router-dom';
 import ProtectedUserRoute from './protectedRoutes.js/ProtectedUserRoute';
-import Home from './pages/DashBoard';
+import DashBoard from './pages/DashBoard';
+import Home from './pages/Home';
 import ProtectedAdminRoute from './protectedRoutes.js/ProtectedAdminRoute';
 import Stock from './pages/Stock';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import DashBoard from './pages/DashBoard';
+
+
 export default function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [users, setUsers] = useState([])
@@ -116,7 +118,7 @@ export default function App() {
             <>
             <Route exact path='/' element={
               <ProtectedUserRoute currentUser={currentUser}>
-                <DashBoard currentUser={currentUser}/>
+                <DashBoard/>
               </ProtectedUserRoute>
             }/>
             <Route path='/stock' element={
@@ -134,7 +136,7 @@ export default function App() {
           ):(
             <>
             <Route exact path='/' element={<Home/>}/>
-            <Route exact path='/login' element={<Login userData={userData} setLoggedIn={setLoggedIn} setUserData={setUserData} setError={setError}/>}/>
+            <Route path='/login' element={<Login userData={userData} setLoggedIn={setLoggedIn} setUserData={setUserData} setError={setError}/>}/>
             <Route path='/reg' element={<Register setError={setError}/>}/>
             </>
           )}

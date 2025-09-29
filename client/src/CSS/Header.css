@@ -7,5 +7,20 @@
     padding: 10px;
     height: fit-content;
 }
+/* NAVIGATION BAR */
+#navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
 /* MAIN HEADER */
+.mainHeading{
+    text-align: center;
+}
 /* LOGGEDIN HEADER */
