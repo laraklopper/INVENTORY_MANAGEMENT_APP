@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import './App.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import ProtectedUserRoute from './protectedRoutes.js/ProtectedUserRoute';
 import DashBoard from './pages/DashBoard';
 import ProtectedAdminRoute from './protectedRoutes.js/ProtectedAdminRoute';
@@ -33,6 +33,9 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [error, setError] =useState(null)
 
+  const navigate = useNavigate()
+
+  
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -97,6 +100,35 @@ export default function App() {
       fetchCurrentUser()
     }
   },[setError, setCurrentUser, loggedIn,])
+
+  const logout = useCallback( () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('userId');
+    localStorage.removeItem('contactDetails.email');
+    localStorage.removeItem('loggedIn');
+    setLoggedIn(false)
+    setError('')
+    // Reset state
+    setLoggedIn(false);
+    setError('');
+    setUserData({
+      companyName: '',
+      fullName: {
+        firstName: '',
+        lastName: '',
+      },
+      contactDetails: {
+        email: '',
+        contactNumber: '',
+      },
+      dateOfBirth: '',
+      password: '',
+      admin: false,
+    });
+    setCurrentUser(null);
+    navigate('/');
+    
+  },[])
   //==========================================
   return (
     <>
