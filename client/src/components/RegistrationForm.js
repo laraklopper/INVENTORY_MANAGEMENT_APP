@@ -85,7 +85,7 @@ export default function RegistrationForm({newUserData, setNewUserData, addUser})
                   </label>
               </Col>
               <Col xs={6} md={4} id='regisCol2'>
-                  <label className='regisLabel'>
+                  <label className='regisLabel' htmlFor=''>
                       <p className='labelText'>COMPANY NAME:</p>
                       <input 
                       className='input'
