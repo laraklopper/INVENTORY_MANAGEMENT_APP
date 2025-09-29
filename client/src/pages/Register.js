@@ -28,7 +28,10 @@ export default function Register() {
     <Container>
         <MainHeader mainHeading='REGISTER'/>
         <section>
-          <RegistrationForm/>
+          <RegistrationForm
+          newUserData={newUserData}
+          setNewUserData={setNewUserData}
+          />
      
 
         </section>
