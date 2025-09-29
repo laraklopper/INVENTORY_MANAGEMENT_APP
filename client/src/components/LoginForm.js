@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
 
 export default function LoginForm({setUserData, submitLogin, userData}) {
-    const [showPassword, setPassword] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
     const [passwordMsg, setPasswordMsg] = useState(false)
 
     const handleLogin = (e) => {
@@ -39,7 +39,7 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
                     </label>
                   </div>
                   <div className="p-2" id='loginPasswordBlock'>
-                    <label>
+                    <label className='loginLabel'>
                         <p className='labelText'>PASSWORD</p>
                         <input
                               className='input'

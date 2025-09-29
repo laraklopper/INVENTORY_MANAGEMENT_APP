@@ -3,7 +3,7 @@ import './App.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import ProtectedUserRoute from './protectedRoutes.js/ProtectedUserRoute';
 import Home from './pages/Home';
 import ProtectedAdminRoute from './protectedRoutes.js/ProtectedAdminRoute';
@@ -12,7 +12,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 export default function App() {
   const [currentUser, setCurrentUser] = useState(null)
-  const [users, setUser] = useState([])
+  const [users, setUsers] = useState([])
   const [userData, setUserData] = useState({
     username: '',
     companyName: '',
@@ -123,6 +123,7 @@ export default function App() {
             <Route path='/stock' element={
               <ProtectedAdminRoute
               currentUser={currentUser}
+              setUsers={setUsers}
               >
                 <Stock
                 currentUser={currentUser}
@@ -133,7 +134,7 @@ export default function App() {
             </>
           ):(
             <>
-            <Route exact path='/' element={<Login userData={userData} setError={setError}/>}/>
+            <Route exact path='/' element={<Login userData={userData} setLoggedIn={setLoggedIn} setUserData={setUserData} setError={setError}/>}/>
             <Route path='/reg' element={<Register setError={setError}/>}/>
             </>
           )}

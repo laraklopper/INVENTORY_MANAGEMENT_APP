@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import '../CSS/Login.css'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -52,6 +53,8 @@ export default function Login({userData, setUserData, setError, setLoggedIn}) {
             <Col xs={6} id='loginFormCol'>
             <LoginForm
              setUserData={setUserData}
+             submitLogin={submitLogin}
+             userData={userData}
             />
             </Col>
             <Col></Col>
