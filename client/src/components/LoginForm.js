@@ -24,7 +24,7 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
         <form aria-label='LoginForm' id='loginForm' onSubmit={handleLogin}>
               <Stack gap={3} id='loginDetails'>
                   <div className="p-2" id='usernameBlock'>
-                    <label>
+                    <label className='loginLabel'>
                         <p className='labelText'>USERNAME:</p>
                         <input
                         className='input'
@@ -81,6 +81,7 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
                     id='loginBtn'
                     aria-label='Submit Login Form Button'
                     >
+                        LOGIN
                     </Button>
                   </div>
               </Stack>
