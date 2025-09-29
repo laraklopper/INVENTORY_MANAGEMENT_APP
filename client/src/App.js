@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col';
 import { Route, Routes } from 'react-router-dom';
 import ProtectedUserRoute from './protectedRoutes.js/ProtectedUserRoute';
 import DashBoard from './pages/DashBoard';
-import Home from './pages/Home';
 import ProtectedAdminRoute from './protectedRoutes.js/ProtectedAdminRoute';
 import Stock from './pages/Stock';
 import Login from './pages/Login';
@@ -135,8 +134,8 @@ export default function App() {
             </>
           ):(
             <>
-            <Route exact path='/' element={<Home/>}/>
-            <Route path='/login' element={<Login userData={userData} setLoggedIn={setLoggedIn} setUserData={setUserData} setError={setError}/>}/>
+          
+            <Route  exact path='/' element={<Login userData={userData} setLoggedIn={setLoggedIn} setUserData={setUserData} setError={setError}/>}/>
             <Route path='/reg' element={<Register setError={setError}/>}/>
             </>
           )}

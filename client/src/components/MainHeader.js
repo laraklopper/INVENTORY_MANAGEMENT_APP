@@ -19,16 +19,6 @@ export default function MainHeader({mainHeading}) {
     const formattedTime = time.toLocaleTimeString()
   return (
     <header className='header' >
-        
-          <Row>
-              <Col></Col>
-              <Col xs={6} id='headingCol' >
-                  
-              </Col>
-              <Col  >
-                
-              </Col>
-          </Row>
           <Row>
               <Col></Col>
               <Col xs={6}>
@@ -45,12 +35,10 @@ export default function MainHeader({mainHeading}) {
                       <div className="p-2" id='navBlock'>
                           <nav role="navigation" aria-label="Navigation Bar" className='navigation'>
                               <ul id='navbar'>
-                                  <li className='refLink'>
-                                      <Link className='refLink' to='/'>HOME</Link>
-                                  </li>
+                              
                                   {/* Link to Login page */}
                                   <li className='linkItem'>
-                                      <Link className='refLink' to='/login'>
+                                      <Link className='refLink' to='/'>
                                           LOGIN
                                       </Link>
                                   </li>
@@ -63,10 +51,9 @@ export default function MainHeader({mainHeading}) {
                               </ul>
                           </nav>
                       </div>
-                  </Stack>
-                 
+                  </Stack>            
               </Col>
-              <Col>
+              <Col id='headerTimeCol'>
                   <Card id='headerTimeCard'>
                       <Card.Body id='timeCardBody'>
                           <h2
