@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
     <Container>
-        <MainHeader/>
+        <MainHeader mainHeading='HOME'/>
     </Container>
     </>
   )

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import '../CSS/Header.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Stack from 'react-bootstrap/Stack';
 import {Link} from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 
@@ -19,27 +18,13 @@ export default function MainHeader({mainHeading}) {
     const formattedTime = time.toLocaleTimeString()
   return (
     <header className='header'>
-          <Row>
-              <Col>
-                  <Stack gap={3}>
-                      <div className="p-2"></div>
-                      <div className="p-2"></div>
-                  </Stack>
-              </Col>
-          </Row>
+        
           <Row>
               <Col></Col>
-              <Col xs={5}>
-                  
-              </Col>
-              <Col></Col>
-          </Row>
-          <Row>
-              <Col xs={6} md={4}></Col>
-              <Col xs={6} md={4}>
+              <Col xs={6} id='headingCol' >
                   <h1 id='heading'>INVENTORY MANAGER</h1>
               </Col>
-              <Col xs={6} md={4}>
+              <Col  >
                   <Card id='headerTimeCard'>
                       <Card.Body id='timeCardBody'>
                           <h2
@@ -54,7 +39,7 @@ export default function MainHeader({mainHeading}) {
           </Row>
           <Row>
               <Col></Col>
-              <Col xs={5}>
+              <Col xs={6}>
                   <h1 className='mainHeading' aria-label="Page Title" aria-live="polite">
                       {mainHeading}
                   </h1>
