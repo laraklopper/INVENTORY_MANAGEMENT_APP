@@ -2,9 +2,7 @@
 
 ```
 font-family: "Winky Rough", sans-serif;
-font-family: "Martian Mono", monospace;
-font-family: "Dosis", sans-serif;
-font-family: "Sigmar", sans-serif;
+
 ```
 ```
 #524F19
