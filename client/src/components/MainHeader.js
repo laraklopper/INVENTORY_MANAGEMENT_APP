@@ -19,7 +19,7 @@ export default function MainHeader({mainHeading}) {
     const formattedTime = time.toLocaleTimeString()
   return (
     <header className='header' >
-          <Row>
+          <Row id='headerRow'>
               <Col></Col>
               <Col xs={6}>
                   <Stack gap={3} id='headerStack'>

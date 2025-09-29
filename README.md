@@ -2,7 +2,10 @@
 
 ```
 font-family: "Winky Rough", sans-serif;
-
+font-family: "Permanent Marker", cursive;
+font-family: "Ubuntu Mono", monospace;
+font-family: "Signika", sans-serif;
+ font-family: "Alkatra", system-ui;
 ```
 ```
 #524F19
