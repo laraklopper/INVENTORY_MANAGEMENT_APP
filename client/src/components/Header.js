@@ -9,6 +9,7 @@ import { ClipboardList } from 'lucide-react';
 import { User } from 'lucide-react';
 import { House } from 'lucide-react';
 import { BookUser } from 'lucide-react';
+import { Clock } from 'lucide-react';
 export default function Header({currentUser, heading}) {
     const [currentTime, setCurrentTime] = useState(new Date())
 
@@ -52,10 +53,11 @@ export default function Header({currentUser, heading}) {
                       </ListGroup>
                   </Card>
               </Col>
-              <Col>
-                  <Card>
-                      <Card.Body>
-                          <h2 className='formattedTime' aria-live='polite'>{formattedTime}</h2>
+              <Col id='timeCol'>
+                  <Card id='timeCard'>
+                      <Card.Body id='headerTimeBody'>
+                          
+                          <h2 className='formattedTime' aria-live='polite'><Clock id='clock' /> {formattedTime}</h2>
                       </Card.Body>
                   </Card>
               </Col>

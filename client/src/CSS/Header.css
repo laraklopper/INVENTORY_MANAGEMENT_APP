@@ -104,6 +104,7 @@
     color: #134e50e6;
         margin: 0px;
             padding: 0px;
+                gap: 10px;
 }
 
 .refLink:hover {
@@ -152,3 +153,23 @@
     font-size: 25px;
 }
 /* LOGGEDIN HEADER */
+#timeCol {
+    display: flex;
+        justify-content: flex-end;
+        height: fit-content;
+}
+#timeCard {
+    display: flex;
+    justify-content: flex-end;
+    border: none;
+        background: transparent;
+            display: flex;
+                justify-content: flex-end;
+                height: fit-content;
+}
+#headerTimeBody {
+    display: flex;
+        justify-content: flex-end;
+    background-color: cadetblue;
+    border-radius: 8px;
+}

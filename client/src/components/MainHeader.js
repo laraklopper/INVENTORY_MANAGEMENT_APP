@@ -6,7 +6,8 @@ import Stack from 'react-bootstrap/Stack';
 import {Link} from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 import { Clock } from 'lucide-react';
-
+import { LogIn } from 'lucide-react';
+import { ChartBarBig } from 'lucide-react';
 export default function MainHeader({mainHeading}) {
     const [time, setTime] = useState(new Date())
 
@@ -40,13 +41,16 @@ export default function MainHeader({mainHeading}) {
                                   {/* Link to Login page */}
                                   <li className='linkItem'>
                                       <Link className='refLink' to='/'>
-                                          LOGIN
+                                          <p>   <LogIn /></p>
+                                       
+                                         <p>LOGIN</p> 
                                       </Link>
                                   </li>
                                   {/* Link to Registration Page */}
                                   <li className='linkItem'>
                                       <Link className='refLink' to='/reg'>
-                                          REGISTRATION
+                                          <p><ChartBarBig /></p>
+                                          <p>REGISTER</p>
                                       </Link>
                                   </li>
                               </ul>

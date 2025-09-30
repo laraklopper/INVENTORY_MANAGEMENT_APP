@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import '../CSS/Forms.css';
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
-
+import { EyeOff } from 'lucide-react';
+import { Eye } from 'lucide-react';
 export default function LoginForm({setUserData, submitLogin, userData}) {
     const [showPassword, setShowPassword] = useState(false)
     const [passwordMsg, setPasswordMsg] = useState(false)
@@ -61,10 +62,10 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
                               type='button'
                               id='passwordDisplayBtn'
                               onClick={() => setShowPassword(!showPassword)}
-                              aria-label={showPassword ? 'Hide Password' : 'Show Password'}
+                              aria-label={showPassword ? 'Hide Password ' : 'Show Password' }
                               aria-pressed={showPassword}
                             >
-                                {showPassword ? 'HIDE PASSWORD' : 'SHOW PASSWORD'}
+                              {showPassword ? `HIDE PASSWORD ${<EyeOff />}` : `SHOW PASSWORD ${<Eye />}` }
                             </Button>
                         </div>
                     </label>
