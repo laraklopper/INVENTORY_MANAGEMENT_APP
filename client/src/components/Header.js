@@ -69,21 +69,24 @@ export default function Header({currentUser, heading}) {
                 <ul id='navbar'>
                           {currentUser && (
                               <li className='linkItem'>
-                                  
-                                  <Link className='refLink' to='/'><House /> HOME</Link>
+                                  <Link className='refLink' to='/'>
+                                      <p className='linkIcon'><House /></p>
+                                      <p className='linkText'>HOME</p>
+                                </Link>
                               </li>
                           )}
                           {currentUser && (
                             <li className='linkItem'>
-                                  <Link className='refLink' to='/account'> <User /> ACCOUNT</Link>
+                                  <Link className='refLink' to='/account'> 
+                                      <p className='linkIcon'><User /></p>
+                                      <p className='linkText'>ACCOUNT</p>
+                                   </Link>
                             </li>
                           )}
                           {currentUser?.admin && (
-                            <li className='linkItem'>
-                                  
+                            <li className='linkItem'>                                  
                                   <Link className='refLink' to='/stock'>
-                                    <p><ClipboardList /> </p>
-                                  
+                                    <p className='linkIcon'><ClipboardList /></p>
                                   <p className='linkText'>STOCK</p></Link>
                             </li>
                           )}
