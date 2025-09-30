@@ -6,8 +6,12 @@
     margin: 10px 0px 10px 0px;
     padding: 10px;
     height: fit-content;
-    font-family: "Winky Rough", sans-serif;
     width:100%
+}
+#heading{
+font-family: "Winky Rough", sans-serif;
+font-weight: 800;
+color: #470D09;
 }
 #headerRow{
     margin: 0px;
@@ -36,8 +40,18 @@
         display: flex;
             align-items: center;
             width: 100%;
-            margin: 0px;
-            padding: 0px;
+        
+           
+            border: solid;
+                padding: 10px 0px 0px 0px;
+                margin: 10px;
+                border-radius: 8px;
+}
+.linkText{
+    margin: 0px;
+}
+.linkIcon{
+    margin: 0px;
 }
 #headerCard {
     display: flex;
@@ -103,8 +117,9 @@
     font-size: 18px;
     color: #134e50e6;
         margin: 0px;
-            padding: 0px;
                 gap: 10px;
+                border: solid;
+                    padding: 0px 5px 0px 5px;
 }
 
 .refLink:hover {
@@ -118,6 +133,7 @@
 }
 /* MAIN HEADER */
 .mainHeading{
+    color: #70150F;
     text-align: center;
     font-family: "Permanent Marker", cursive;
 }

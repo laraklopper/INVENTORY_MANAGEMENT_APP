@@ -41,16 +41,15 @@ export default function MainHeader({mainHeading}) {
                                   {/* Link to Login page */}
                                   <li className='linkItem'>
                                       <Link className='refLink' to='/'>
-                                          <p>   <LogIn /></p>
-                                       
-                                         <p>LOGIN</p> 
+                                          <p className='linkIcon'>   <LogIn /></p>
+                                         <p className='linkText'>LOGIN</p> 
                                       </Link>
                                   </li>
                                   {/* Link to Registration Page */}
                                   <li className='linkItem'>
                                       <Link className='refLink' to='/reg'>
-                                          <p><ChartBarBig /></p>
-                                          <p>REGISTER</p>
+                                          <p className='linkIcon'><ChartBarBig /></p>
+                                          <p className='linkText'>REGISTER</p>
                                       </Link>
                                   </li>
                               </ul>
