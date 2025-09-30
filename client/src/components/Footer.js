@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { dateDisplay, timeDisplay } from '../functions/dateFunctions';
-
+import { Lock } from 'lucide-react';
 export default function Footer({currentUser, logout}) {
     const [date, setDate] = useState(new Date())
 
@@ -54,7 +54,9 @@ export default function Footer({currentUser, logout}) {
                                       onClick={logout}
                                       id='logoutBtn'
 
-                                  >LOGOUT</Button>
+                                  >
+                                      <Lock />
+                                    LOGOUT</Button>
                               </ListGroup.Item>
                           </ListGroup>
 

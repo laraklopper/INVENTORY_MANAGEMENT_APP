@@ -57,3 +57,17 @@ html,
   font-style: italic;
   font-family: "Ubuntu Mono", monospace;
 }
+#welcomeLabel{
+      display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        gap: 10px;
+        justify-content: center;
+        font-family: "Roboto Condensed", sans-serif;
+        color: #3D0F13;
+}
+#homeSection1{
+      margin: 10px 0px 10px 0px;
+        background: #CCC53F;
+        padding: 10px 0px 10px 0px;
+}
