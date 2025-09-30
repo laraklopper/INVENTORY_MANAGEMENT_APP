@@ -54,7 +54,7 @@ export default function App() {
 
         if (!response.ok) {
           console.error('[ERROR: App.js]: Failed to fetch Users');
-          throw new Error("Failed to fetch Clients");
+          throw new Error("Failed to fetch Users");
         }
 
         const userData = await response.json()
@@ -135,7 +135,7 @@ export default function App() {
   //==========================================
   return (
     <>
-    <Container>
+    <Container id='appContainer'>
         <Row id='errorRow'>
           <Col></Col>
           <Col xs={5} id='errorCol'>

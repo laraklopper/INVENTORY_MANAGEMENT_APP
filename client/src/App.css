@@ -17,10 +17,43 @@ html,
   display: flex;
   justify-content: center;
 }
-#homePageCard{
+#appContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 0px 10px 0px;
+}
+/* ERROR */
+#errorCol{
   background-color: transparent;
   border: none;
   display: flex;
+      justify-content: center;
+ 
+}
+#pageNotFound {
+  text-align: center;
+  font-family: "Signika", sans-serif;
+  color: #8b3636;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  padding: 100px;
   height: 100%;
-    width: 100%;
+  text-transform: uppercase;
+  margin: 50px;
+}
+/* Text */
+#errorMessage {
+  color: #70150F;
+  padding: 10px 0px 10px 0px;
+  margin: 10px 0px 10px 0px;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-style: italic;
+  font-family: "Ubuntu Mono", monospace;
 }
