@@ -28,13 +28,35 @@
 #footerTimeCard {
     display: flex;
 }
-.footerListItem {
+#adminStatus {
     display: flex;
     gap: 10px;
         text-transform: uppercase;
         font-family: "Alkatra", system-ui;
             text-decoration: underline;
     width: 100%;
+        background-color: transparent;
+            border: none;
+}
+#company{
+    display: flex;
+        gap: 10px;
+        text-transform: uppercase;
+        font-family: "Alkatra", system-ui;
+        text-decoration: underline;
+        width: 100%;
+            background-color: transparent;
+                border: none;
+}
+#position {
+    display: flex;
+    gap: 10px;
+    text-transform: uppercase;
+    font-family: "Alkatra", system-ui;
+    text-decoration: underline;
+    width: 100%;
+    background-color: transparent;
+    border: none;
 }
 #footerStatusStack{
     display: flex;
@@ -76,4 +98,5 @@ background-color: transparent;
     font-size: 18px;
     justify-content: center;
     font-family: "Ubuntu Mono", monospace;
+    gap: 10px;
 }

@@ -21,17 +21,24 @@ export default function Footer({currentUser, logout}) {
         
           <Row id='footerRow'>
               <Col id='footerStatusCol'>
-                  <ul className='userStatusList'>
-                      <li className='footerListItem'>
-                          <h5 id='status'>Logged in as:</h5><h5 className='adminStatus'>{currentUser.admin ? 'Admin' : 'User'}</h5>
-                      </li>
-                      <li className='footerListItem'>
-                          <h5 className='status'>Company: </h5><h5 className='company'>{currentUser.companyName}</h5>
-                      </li>
-                      <li className='footerListItem'>
-                          <h5 className='status'>Position:</h5><h5 className='position'> {currentUser.position}</h5>
-                      </li>
-                  </ul>
+                  <Card id='userStatusCard'>
+                      <ListGroup id='userStatusList'>
+                          <ListGroup.Item
+                          id='adminStatus'
+                          >
+                              <h5 id='status'>Logged in as:</h5><h5 className='adminStatus'>{currentUser.admin ? 'Admin' : 'User'}</h5>
+                          </ListGroup.Item>
+                          <ListGroup.Item
+                          id='company'
+                          > <h5 className='status'>Company: </h5><h5 className='company'>{currentUser.companyName}</h5></ListGroup.Item>
+                          <ListGroup.Item
+                          id='position'
+                          >
+                            <h5 className='status'>Position:</h5><h5 className='position'> {currentUser.position}</h5>
+                        </ListGroup.Item>
+                      </ListGroup>
+                  </Card>
+                
               </Col>
               <Col xs={6}>
                 
