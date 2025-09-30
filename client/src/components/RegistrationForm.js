@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
+import { Eye, EyeOff } from 'lucide-react'; // import both in one line
 
 export default function RegistrationForm({newUserData, setNewUserData, addUser}) {
     const [viewPassword, setViewPassword] = useState(false)
@@ -65,6 +66,7 @@ export default function RegistrationForm({newUserData, setNewUserData, addUser})
         });
         setViewPassword(false); // Reset password visibility
     };
+
 
 //===============JSX RENDERING========================
   return (
@@ -259,7 +261,15 @@ export default function RegistrationForm({newUserData, setNewUserData, addUser})
                               onClick={() => setViewPassword((s) => !s)}
                         >
                               {/* Button text based on viewPassword state*/}
-                              {viewPassword ? 'HIDE PASSWORD' : 'SHOW PASSWORD'}
+                              {viewPassword ? (
+                                  <>
+                                      Hide Password <EyeOff style={{ marginLeft: 6 }} />
+                                  </>
+                              ) : (
+                                  <>
+                                      Show Password <Eye style={{ marginLeft: 6 }} />
+                                  </>
+                              )}
                         </Button>
                     </div>
                     

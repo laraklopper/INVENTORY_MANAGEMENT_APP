@@ -19,7 +19,7 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
             [name] :value
         }))
     }
-
+    const togglePassword = () => setShowPassword((prev) => !prev);
 
   return (
         <form aria-label='LoginForm' id='loginForm' onSubmit={handleLogin}>
@@ -61,23 +61,33 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
                               variant='warning'
                               type='button'
                               id='passwordDisplayBtn'
-                              onClick={() => setShowPassword(!showPassword)}
+                              onClick={togglePassword}
                               aria-label={showPassword ? 'Hide Password ' : 'Show Password' }
                               aria-pressed={showPassword}
+                              aria-controls="password" // connects the toggle to the input
                             >
-                              {showPassword ? `HIDE PASSWORD ${<EyeOff />}` : `SHOW PASSWORD ${<Eye />}` }
+                              {showPassword ? (
+                                  <>
+                                      Hide Password <EyeOff style={{ marginLeft: 6 }} />
+                                  </>
+                              ) : (
+                                  <>
+                                      Show Password <Eye style={{ marginLeft: 6 }} />
+                                  </>
+                              )}
                             </Button>
                         </div>
                     </label>
                   </div>
-                  {passwordMsg && (
-                      <div className="p-2" id='messageBlock'>
-                         <i> <h6 className='msgText'>
-                              <strong>We will never share <br /> your password</strong>
-                          </h6>
-                      </i>
-                      </div>
-                  )}
+              {passwordMsg && (
+                  <div className="p-2" id="messageBlock" aria-live="polite">
+                      <p className="msgText">
+                          <em>
+                              <strong>We will never share your password.</strong>
+                          </em>
+                      </p>
+                  </div>
+              )}
                   <div className="p-2" id='loginBtnBlock'>
                     <Button
                     variant='light'

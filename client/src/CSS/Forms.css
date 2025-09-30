@@ -37,6 +37,7 @@
     width: 180px;
 }
 #passwordDisplayBtn {
+    text-transform: uppercase;
     color: black;
     font-family: "Ubuntu Mono", monospace;
     font-size: 16px;
