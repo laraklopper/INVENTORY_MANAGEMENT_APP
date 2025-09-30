@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 import {Link} from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
+import { Clock } from 'lucide-react';
 
 export default function MainHeader({mainHeading}) {
     const [time, setTime] = useState(new Date())
@@ -56,12 +57,17 @@ export default function MainHeader({mainHeading}) {
               <Col id='headerTimeCol'>
                   <Card id='headerTimeCard'>
                       <Card.Body id='timeCardBody'>
-                          <h2
-                              className="formattedTime"
-                              aria-label="Current Time Display"
-                              aria-live="polite">
-                              {formattedTime}
-                          </h2>
+                        <span id='headingClock'>
+                              <h2 className='formattedTime'><Clock /></h2> 
+                              <h2
+                                  className="formattedTime"
+                                  aria-label="Current Time Display"
+                                  aria-live="polite">
+                                  {formattedTime}
+                              </h2>
+                        </span>
+                          
+                          
                       </Card.Body>
                   </Card>
               </Col>

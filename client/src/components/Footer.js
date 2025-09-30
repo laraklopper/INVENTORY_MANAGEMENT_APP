@@ -6,6 +6,8 @@ import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { dateDisplay, timeDisplay } from '../functions/dateFunctions';
+
 export default function Footer({currentUser, logout}) {
     const [date, setDate] = useState(new Date())
 
@@ -19,23 +21,53 @@ export default function Footer({currentUser, logout}) {
     <footer id='footer'>
         <Row>
             <Col>
-                  <Stack direction="horizontal" gap={3}>
-                      <div className="p-2">
-                          <Card>
-                              <Card.Header>Featured</Card.Header>
-                              <ListGroup variant="flush">
-                                  <ListGroup.Item>
-                                      <h5 id='status'>Logged in as: {currentUser.admin ? 'Admin' : 'User'}</h5>
-                                  </ListGroup.Item>
-                                  <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                                  <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-                              </ListGroup>
-                          </Card>
+                  <Stack direction="horizontal" gap={3} id='footerStatusStack'>
+                      
+                          <div className="p-2">
+                            <ul className='userStatusList'>
+                                <li className='footerListItem'>
+                                      <h5 id='status'>Logged in as:</h5><h5 className='adminStatus'>{currentUser.admin ? 'Admin' : 'User'}</h5>
+                                </li>
+                                <li className='footerListItem'>
+                                      <h5 className='status'>Company: </h5><h5 className='company'>{currentUser.companyName}</h5>
+                                </li>
+                                  <li className='footerListItem'>
+                                      <h5 className='status'>Position:</h5><h5 className='position'> {currentUser.position}</h5>
+                                </li>
+                            </ul>
+                          </div>
+                    
+                       
                          
 
-                      </div>
+                      
                       <div className="p-2 ms-auto"></div>
-                      <div className="p-2"></div>
+                      <div className="p-2">
+                          <Card>
+                              <Card.Body>
+                                  <ListGroup variant="flush">
+                                      <ListGroup.Item>
+                                          <h5 className='timeStamp'>{dateDisplay(date)}</h5>
+                                      </ListGroup.Item>
+                                      <ListGroup.Item>
+                                        <h5 className='timeStamp'>{timeDisplay(date)}</h5>
+                                      </ListGroup.Item>
+                                     
+                                      <ListGroup.Item>
+                                          <Button
+                                              variant="warning"
+                                              type='button'
+                                              onClick={logout}
+                                              id='logoutBtn'
+
+                                          >LOGOUT</Button>
+                                      </ListGroup.Item>
+                                  </ListGroup>
+
+                                  
+                              </Card.Body>
+                          </Card>
+                      </div>
                   </Stack>
 
             </Col>
@@ -45,13 +77,7 @@ export default function Footer({currentUser, logout}) {
                   <div className="p-2"></div>
                   <div className="p-2 ms-auto"></div>
                   <div className="p-2">
-                      <Button 
-                      variant="warning"
-                      type='button'
-                      onClick={logout}
-                      id='logoutBtn'
                       
-                      >LOGOUT</Button>
                   </div>
               </Stack>
 

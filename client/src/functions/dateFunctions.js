@@ -9,7 +9,7 @@ export const dateDisplay = (dateString) => {
 
 // Format time as hh:mm:ss
 export const timeDisplay = (dateObj) => {
-    return dateObj.toLocaleTimeString('en-GB', {
+    return dateObj.toLocaleTimeString('en-ZA', {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',

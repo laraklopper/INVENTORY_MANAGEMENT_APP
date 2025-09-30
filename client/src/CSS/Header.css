@@ -127,15 +127,24 @@
         background-color: cadetblue;
             border-radius: 8px;
 }
+/* Layout */
 #headerTimeCol{
         display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             height: fit-content;
             margin: 0px;
             padding: 0px;
 }
-.formattedTime{
+
+/* Clock */
+#headingClock{
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+}
+.formattedTime {
     font-family: "Signika", sans-serif;
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 25px;
 }
 /* LOGGEDIN HEADER */

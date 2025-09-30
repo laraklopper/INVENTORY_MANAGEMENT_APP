@@ -32,8 +32,7 @@ export default function Header({currentUser, heading}) {
                       <ListGroup variant="flush">
                         <ListGroup.Item id='listItem2'>
                         <i><h1 className='heading'>{heading}</h1></i>
-                          </ListGroup.Item>  
-                
+                          </ListGroup.Item>                
                           {currentUser?.username && (
                               <ListGroup.Item variant="warning" id="listItem1">
                                   <i>
@@ -42,18 +41,18 @@ export default function Header({currentUser, heading}) {
                                       </h2>
                                   </i>
                               </ListGroup.Item>
-                          )}
-                          
-                      </ListGroup>
+                          )}            
+                     
                       <ListGroup.Item variant='warning' id='listItem2'>
                           <h3 className='headerStatus' aria-level={3}>{currentUser.position}</h3>
                       </ListGroup.Item>
+                      </ListGroup>
                   </Card>
               </Col>
               <Col>
                   <Card>
                       <Card.Body>
-                          <h1 className='formattedTime' aria-live='polite'>{formattedTime}</h1>
+                          <h2 className='formattedTime' aria-live='polite'>{formattedTime}</h2>
                       </Card.Body>
                   </Card>
               </Col>
