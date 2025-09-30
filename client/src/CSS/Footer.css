@@ -6,6 +6,55 @@
     display: flex;
     flex-direction: column;
 }
+.userStatusList {
+    display: flex;
+    width: 100%;
+    padding: 0px;
+    list-style: none;
+        flex-direction: column;
+            text-decoration: underline;
+}
+#footerTimeCard {
+    display: flex;
+}
+.footerListItem {
+    display: flex;
+    gap: 10px;
+        text-transform: uppercase;
+        font-family: "Alkatra", system-ui;
+            text-decoration: underline;
+    width: 100%;
+}
+#footerStatusStack{
+    display: flex;
+    width: 100%;
+}
+#footerTimeCard {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    background: transparent;
+    border: none;
+}
+#footerListItem1 {
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+        border: none;
+}
+#footerListItem2{
+    display: flex;
+    justify-content: flex-end;
+        border: none;
+        background-color: transparent;
+}
+
+#footerListItem3 {
+    display: flex;
+    justify-content: flex-end;
+        border: none;
+background-color: transparent;
+}
 /* Buttons */
 #logoutBtn {
     width: 180px;

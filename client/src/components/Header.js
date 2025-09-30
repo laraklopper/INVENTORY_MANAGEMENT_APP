@@ -5,7 +5,10 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
-
+import { ClipboardList } from 'lucide-react';
+import { User } from 'lucide-react';
+import { House } from 'lucide-react';
+import { BookUser } from 'lucide-react';
 export default function Header({currentUser, heading}) {
     const [currentTime, setCurrentTime] = useState(new Date())
 
@@ -37,14 +40,14 @@ export default function Header({currentUser, heading}) {
                               <ListGroup.Item variant="warning" id="listItem1">
                                   <i>
                                       <h2 className="headerStatus">
-                                         {currentUser.username}
+                                          <User color='black'/>     {currentUser.username}
                                       </h2>
                                   </i>
                               </ListGroup.Item>
                           )}            
                      
                       <ListGroup.Item variant='warning' id='listItem2'>
-                          <h3 className='headerStatus' aria-level={3}>{currentUser.position}</h3>
+                              <h3 className='headerStatus' aria-level={3}>   <BookUser color='black' /> {currentUser.position}</h3>
                       </ListGroup.Item>
                       </ListGroup>
                   </Card>
@@ -64,17 +67,22 @@ export default function Header({currentUser, heading}) {
                 <ul id='navbar'>
                           {currentUser && (
                               <li className='linkItem'>
-                                  <Link className='refLink' to='/'>HOME</Link>
+                                  
+                                  <Link className='refLink' to='/'><House /> HOME</Link>
                               </li>
                           )}
                           {currentUser && (
-                            <li>
-                                <Link className='refLink' to='/account'>ACCOUNT</Link>
+                            <li className='linkItem'>
+                                  <Link className='refLink' to='/account'> <User /> ACCOUNT</Link>
                             </li>
                           )}
                           {currentUser?.admin && (
                             <li className='linkItem'>
-                                <Link className='refLink' to='/stock'>STOCK</Link>
+                                  
+                                  <Link className='refLink' to='/stock'>
+                                    <p><ClipboardList /> </p>
+                                  
+                                  <p className='linkText'>STOCK</p></Link>
                             </li>
                           )}
                 </ul>

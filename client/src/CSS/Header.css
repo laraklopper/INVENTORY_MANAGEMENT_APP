@@ -99,16 +99,20 @@
 .refLink{
     text-decoration: none;
     font-weight: 700;
-    padding: inherit;
+    display: flex;
     font-size: 18px;
     color: #134e50e6;
+        margin: 0px;
+            padding: 0px;
 }
+
 .refLink:hover {
     color: #2B3A0E;
     background-color: #AB9100;
     font-weight: 800;
     text-decoration: none;
-    padding: 5px;
+    padding: 0px;
+    margin: 0px;
     border-radius: 5px;
 }
 /* MAIN HEADER */
