@@ -8,6 +8,7 @@ import Stack from 'react-bootstrap/Stack';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { dateDisplay } from '../functions/dateFunctions';
+import { SquareUserRound } from 'lucide-react';
 
 export default function Account({currentUser ,logout}) {
   
@@ -28,13 +29,21 @@ export default function Account({currentUser ,logout}) {
     <section id='accountSection1'>
       <div id='user'>
           <Row>
+            <Col></Col>
+            <Col xs={5} id='detailsHeadCol'>
+              <h3 id='detailsIcon'><SquareUserRound size={28} fontWeight={700}/></h3>
+              <h3 id='userDetailsHead'>DETAILS:</h3>
+              </Col>
+            <Col></Col>
+          </Row>
+          <Row>
             <Col xs={6} md={4}>
               <Stack gap={3} id='userStack1'>
-                <div className="p-2">
+                <div className="p-2" id='usernameBlock'>
                   {/* Username */}
                   <span className='userDetailsLabel'>
-                    <h6 className='dataTextHead'>USERNAME:</h6>
-                    <h6 className='dataText'>{username}</h6>
+                    <h5 className='dataTextHead'>USERNAME:</h5>
+                    <h5 className='dataText'>{username}</h5>
                   </span>
                 </div>
                 <div className="p-2" id='userNameBlock'>
@@ -115,12 +124,12 @@ export default function Account({currentUser ,logout}) {
                    EDIT ACCOUNT
                   </Button>
                 </div>
-                <div className="p-2">
+                <div className="p-2" id='editPasswordDiv'>
                   <h6 className='btnText'>CLICK HERE TO:</h6>
                   <Button
                   variant='warning'
                   type='button'
-                  id='toggleEditPassword'
+                  id='toggleEditPasswordBtn'
                   >
                     EDIT PASSWORD
                   </Button>

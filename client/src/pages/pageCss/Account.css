@@ -1,0 +1,76 @@
+/* SECTION 1 */
+#accountSection1 {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 10px;
+    padding: 10px 5px 10px 5px;
+    background-color: #AB9100;
+    width: 100%;
+    border: solid black 4px;
+    margin: 10px 0px 10px 0px;
+}
+#user {
+    background-color: #998200;
+    padding: 5px;
+    margin: 10px 5px 10px 5px;
+    /* border: solid black; */
+    border-radius: 5px;
+        width: 100%;
+}
+#editAccountDiv{
+    display: flex;
+    justify-content: center;
+        align-items: baseline;
+    
+    gap: 10px;
+    padding: 10px 5px 10px 5px;
+    background-color: #AB9100;
+    width: 100%;
+   
+    margin: 10px 0px 10px 0px;
+}
+#editPasswordDiv {
+    display: flex;
+    
+    justify-content: center;
+        align-items: baseline;
+    gap: 10px;
+    padding: 10px 5px 10px 5px;
+    background-color: #AB9100;
+    width: 100%;
+    
+    margin: 10px 0px 10px 0px;
+}
+.userDetailsLabel{
+    display: flex;
+    text-transform: uppercase;
+        align-items: baseline;
+        gap: 10px;
+}
+#toggleEditUserBtn {
+    width: 180px;
+    color: #000;
+    font-weight: 700;
+}
+#toggleEditPasswordBtn {
+    width: 180px;
+    color: #000;
+    font-weight: 700;
+}
+#detailsHeadCol {
+    display: flex;
+        align-items: center;
+    color: #000;
+    font-weight: 700;
+}
+#detailsIcon {
+    display: flex;
+    align-items: center;
+    
+}
+#userDetailsHead {
+    display: flex;
+    align-items: center;
+text-decoration: underline;
+}
