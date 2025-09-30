@@ -43,7 +43,7 @@ export default function App() {
         const token = localStorage.getItem('token');//Get token from localStorage
         if(!token || !loggedIn) return
 
-        const response = await fetch(`http://localhost:3001/users/fetchUsers`, {
+        const response = await fetch(`http://localhost:3001/users/findUsers`, {
           method: 'GET',
           mode: 'cors',
           headers: {
@@ -53,17 +53,17 @@ export default function App() {
         })
 
         if (!response.ok) {
-          console.error('[ERROR: App.js]: Failed to fetch Clients');
+          console.error('[ERROR: App.js]: Failed to fetch Users');
           throw new Error("Failed to fetch Clients");
         }
 
-        const fetchedUsers = await response.json()
-        if (Array.isArray(fetchedUsers)) {
-          setUsers(fetchedUsers)
+        const userData = await response.json()
+        if (Array.isArray(userData)) {
+          setUsers(userData)
           setError(null); // Clear any previous errors
         }
       } catch (error) {
-        // console.error(`ERROR: App.js: error fetching users`);
+        console.error(`ERROR: App.js: error fetching users`);
         setError(`ERROR: App.js: error fetching users: ${error.message}`);
       }
     }
@@ -100,8 +100,10 @@ export default function App() {
       fetchUsers()
       fetchCurrentUser()
     }
-  },[setError, setCurrentUser, loggedIn,])
+  },[setError, setCurrentUser, loggedIn])
 
+  //===========EVENT LISTENERS==================
+  //Function for user logouts
   const logout = useCallback( () => {
     localStorage.removeItem('token')
     localStorage.removeItem('userId');

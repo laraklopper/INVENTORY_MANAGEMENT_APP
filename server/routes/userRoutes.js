@@ -3,7 +3,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken')
 const router = express.Router();
 const User = require('../models/userSchema');
-const { checkJwtToken, checkAge, checkPassword } = require('./middleware');
+const { checkJwtToken, checkAge, checkPassword, handleFindUsers } = require('./middleware');
 
 const secretKey = process.env.JWT_SECRET_KEY || 'secretKey';
 const expirationTime = process.env.JWT_EXPIRATION || '12';
@@ -23,7 +23,7 @@ else if (!jwtAlgorithm) {
 //-------------GET--------------------------
 router.get('/me', checkJwtToken, async (req, res) => {
     try {
-        const userId = req.userId?.userId;
+        const userId = req.user?.userId;
 
         if (!userId) {
             console.error(`[ERROR: userRoutes.js]: Unauthorized: No userId found`);
@@ -47,7 +47,7 @@ router.get('/me', checkJwtToken, async (req, res) => {
 
 //Route to GET all users
 //Send a GET request to the /users/findUsers endpoint
-router.get('/findUsers', checkJwtToken, async (req, res) => {
+router.get('/findUsers', checkJwtToken, handleFindUsers,async (req, res) => {
     try {
         const { email, contactNumber, username } = req.query;
 

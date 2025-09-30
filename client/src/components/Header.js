@@ -24,13 +24,13 @@ export default function Header({currentUser, heading}) {
               <Col></Col>
               <Col xs={6}>
                   <Card id='headerCard'>
-                      <Card.Header>
+                      <Card.Header id='cardHeader'>
                           <h1 id='heading' aria-label='application Heading' aria-level={1}>
                               INVENTORY MANAGER
                           </h1>
                       </Card.Header>
                       <ListGroup variant="flush">
-                        <ListGroup.Item id='listHeading'>
+                        <ListGroup.Item id='listItem2'>
                         <i><h1 className='heading'>{heading}</h1></i>
                           </ListGroup.Item>  
                 
@@ -57,9 +57,9 @@ export default function Header({currentUser, heading}) {
           </Row>
           <Row>
               <Col></Col>
-              <Col xs={6}>
-              <nav>
-                <ul>
+              <Col xs={6} id='navCol'>
+              <nav className='navigation'>
+                <ul id='navbar'>
                           {currentUser && (
                               <li className='linkItem'>
                                   <Link className='refLink' to='/'>HOME</Link>

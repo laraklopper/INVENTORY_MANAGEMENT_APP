@@ -39,7 +39,51 @@
             margin: 0px;
             padding: 0px;
 }
+#headerCard {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    justify-content: center;
 
+}
+
+#cardHeader {
+    display: flex;
+    background-color: transparent;
+    justify-content: center;
+    border: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+#listItem1 {
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    font-family: "Permanent Marker", cursive;
+    background: inherit;
+
+}
+
+#listItem2 {
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    background: inherit;
+    font-family: "Permanent Marker", cursive;
+    padding: 0px 10px;
+    margin: 0px 3px;
+}
+
+#listItem3 {
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    background: inherit;
+    font-family: "Permanent Marker", cursive;
+    padding: 0px 10px;
+    margin: 0px 3px;
+}
 #navbar {
     width: 100%;
     list-style-type: none;

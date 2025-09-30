@@ -32,14 +32,25 @@ const checkJwtToken = (req, res, next) => {
 
 
     } catch (error) {
-        if (error.name === 'TokenExpiredError') {
-            return res.status(401).json({ message: 'Token expired.' });
-        }
-        return res.status(401).json({ message: 'Invalid token.' });
+        console.error('[ERROR: middleware.js] No token attatched to the request', error.message);
+        return res.status(400).json({ message: 'Invalid token.' });
     
     }
 }
+const handleFindUsers = async (req, res) => {
+    try {
+        const { email, contactNumber, username } = req.query;
+        const query = {};
+        if (email) query['contactDetails.email'] = String(email).trim().toLowerCase();
+        if (contactNumber) query['contactDetails.contactNumber'] = String(contactNumber).trim();
+        if (username) query.username = String(username).trim();
 
+        const users = await User.find(query).select('-password').exec();
+        return res.status(200).json(users);
+    } catch (error) {
+        return res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
 const checkPassword = (req, res, next) => {
     console.log('[DEBUG: middleware.js checkPassword] Middleware triggered');
     try {
@@ -101,4 +112,4 @@ const checkAge = (req, res, next) =>{
     }
 }
 
-module.exports = {checkJwtToken, checkPassword, checkAge};
+module.exports = {checkJwtToken, checkPassword, checkAge, handleFindUsers};

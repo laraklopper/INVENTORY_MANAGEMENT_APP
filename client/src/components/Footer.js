@@ -30,7 +30,7 @@ export default function Footer({currentUser, logout}) {
                       type='button'
                       onClick={logout}
                       
-                      >Warning</Button>
+                      >LOGOUT</Button>
                   </div>
               </Stack>
 
