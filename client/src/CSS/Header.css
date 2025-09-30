@@ -6,7 +6,7 @@
     margin: 10px 0px 10px 0px;
     padding: 10px;
     height: fit-content;
-    width:100%
+    width:100%;
 }
 #heading{
 font-family: "Winky Rough", sans-serif;
@@ -141,6 +141,7 @@ text-decoration: underline;
     font-family: "Winky Rough", sans-serif;
     margin:0px;
     padding: 0px;
+    font-weight: 900;
 }
 #headerTimeCard{
     display: flex;

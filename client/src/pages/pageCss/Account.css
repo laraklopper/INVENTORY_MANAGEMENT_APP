@@ -8,7 +8,7 @@
     background-color: #AB9100;
     width: 100%;
     border: solid black 4px;
-    margin: 10px 0px 10px 0px;
+    margin: 0px 0px;
 }
 #user {
     background-color: #998200;
@@ -47,6 +47,7 @@
     text-transform: uppercase;
         align-items: baseline;
         gap: 10px;
+        font-family: "Roboto Condensed", sans-serif;
 }
 #toggleEditUserBtn {
     width: 180px;
@@ -61,8 +62,10 @@
 #detailsHeadCol {
     display: flex;
         align-items: center;
+        justify-content: center;
     color: #000;
     font-weight: 700;
+    gap: 10px;
 }
 #detailsIcon {
     display: flex;
@@ -71,6 +74,20 @@
 }
 #userDetailsHead {
     display: flex;
+    font-family: "Roboto Condensed", sans-serif;
     align-items: center;
-text-decoration: underline;
+    text-decoration: underline;
+}
+#userDetailsRow {
+        border-radius: 5px;
+    margin: 0px;
+    display: flex;
+        background-color:#CCC53F;
+        padding: 0px 10px;
+}
+#userHeadRow {
+    margin: 0px;
+    display: flex;
+    padding: 0px 10px;
+    margin: 10px 0px 10px 0px;
 }

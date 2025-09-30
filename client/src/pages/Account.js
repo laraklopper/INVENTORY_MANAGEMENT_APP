@@ -8,7 +8,8 @@ import Stack from 'react-bootstrap/Stack';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { dateDisplay } from '../functions/dateFunctions';
-import { SquareUserRound } from 'lucide-react';
+import { SquareUserRound, Phone, Mail, ShieldUser, Calendar, User, Building2, Smile, BriefcaseBusiness } from 'lucide-react';
+
 
 export default function Account({currentUser ,logout}) {
   
@@ -28,7 +29,7 @@ export default function Account({currentUser ,logout}) {
     <Header currentUser={currentUser}/>
     <section id='accountSection1'>
       <div id='user'>
-          <Row>
+          <Row id='userHeadRow'>
             <Col></Col>
             <Col xs={5} id='detailsHeadCol'>
               <h3 id='detailsIcon'><SquareUserRound size={28} fontWeight={700}/></h3>
@@ -36,12 +37,13 @@ export default function Account({currentUser ,logout}) {
               </Col>
             <Col></Col>
           </Row>
-          <Row>
+          <Row id='userDetailsRow'>
             <Col xs={6} md={4}>
               <Stack gap={3} id='userStack1'>
                 <div className="p-2" id='usernameBlock'>
                   {/* Username */}
                   <span className='userDetailsLabel'>
+                    <h5><User /></h5>
                     <h5 className='dataTextHead'>USERNAME:</h5>
                     <h5 className='dataText'>{username}</h5>
                   </span>
@@ -49,13 +51,15 @@ export default function Account({currentUser ,logout}) {
                 <div className="p-2" id='userNameBlock'>
                   {/* User Full Name */}
                   <span className='userDetailsLabel'>
-                    <h5 className='dataTextHead'>NAME:</h5>
+                    <h5><Smile /></h5>
+                    <h5 className='dataTextHead'> NAME:</h5>
                     <h5 className='dataText'>{`${firstName} ${lastName}`} </h5>
                   </span>
                 </div>
                 <div className="p-2" id='userDOBBlock'>
                   {/* User Date of Birth */}
                   <span className='userDetailsLabel'>
+                    <h5><Calendar /></h5>
                     <h5 className='dataTextHead'>DATE OF BIRTH: </h5>
                     <h5 className='dataText'>{dateDisplay(dateOfBirth)}</h5>
                   </span>
@@ -67,6 +71,7 @@ export default function Account({currentUser ,logout}) {
                 <div className="p-2" id='userCompanyBlock'>
                   {/* User Company */}
                   <span className='userDetailsLabel'>
+                    <h5><Building2 /></h5>
                     <h5 className='dataTextHead'>COMPANY: </h5>
                     <h5 className='dataText'>{companyName}</h5>
                   </span>
@@ -74,6 +79,7 @@ export default function Account({currentUser ,logout}) {
                 <div className="p-2" id='userEmailBlock'>
                   {/* User Email */}
                   <span className='userDetailsLabel'>
+                    <h5> <Mail /></h5>
                     <h5 className='dataTextHead'>EMAIL: </h5>
                     <h5 className='dataText'>{email}</h5>
                   </span>
@@ -81,7 +87,8 @@ export default function Account({currentUser ,logout}) {
                 <div className="p-2" id='userAdminBlock'>
                   {/* User admin status*/}
                   <span className='userDetailsLabel'>
-                    <h5 className='dataTextHead'>ADMIN: </h5>
+                    <h5><ShieldUser /></h5>
+                    <h5 className='dataTextHead'> ADMIN: </h5>
                     <h5 className='dataText'>{isAdmin}</h5>
                   </span>
                 </div>
@@ -93,13 +100,15 @@ export default function Account({currentUser ,logout}) {
               <Stack gap={3}>
                 <div className="p-2">
                   <span className='userDetailsLabel' >
-                    <h5 className='dataTextHead'>POSITION:</h5>
+                    <h5><BriefcaseBusiness /></h5>
+                    <h5 className='dataTextHead'> POSITION:</h5>
                     <h5 className='dataText'>{position}</h5>
                   </span>
                 </div>
                 <div className="p-2" id='userContactBlock'>
                   {/* User Contact number */}
                   <span className='userDetailsLabel'>
+                    <h5><Phone /></h5>
                     <h5 className='dataTextHead'>CONTACT NUMBER: </h5>
                     <h5 className='dataText'>{contactNumber}</h5>
                   </span>
