@@ -23,8 +23,8 @@ export default function Account({currentUser ,logout}) {
   return (
     <>
     <Header currentUser={currentUser}/>
-    <section>
-      <div>
+    <section id='accountSection1'>
+      <div id='user'>
           <Row>
             <Col xs={6} md={4}>
               <Stack gap={3} id='userStack1'>
@@ -102,8 +102,8 @@ export default function Account({currentUser ,logout}) {
           <Row>
             <Col></Col>
             <Col xs={5}>
-              <Stack gap={3}>
-                <div className="p-2">
+              <Stack gap={3} id='editAccountStack'>
+                <div className="p-2" id='editAccountDiv'>
                   <h6 className='btnText'>CLICK HERE TO:</h6>
                   <Button
                   variant='warning'
