@@ -1,0 +1,19 @@
+/* FOOTER */
+#footer {
+    background-color: #B82C3A;
+    margin: 10px 0px 25px 0px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+/* Buttons */
+#logoutBtn {
+    width: 180px;
+    font-weight: 700;
+    color: black;
+    display: flex;
+    text-align: center;
+    font-size: 18px;
+    justify-content: center;
+    font-family: "Ubuntu Mono", monospace;
+}

@@ -38,13 +38,16 @@ export default function Header({currentUser, heading}) {
                               <ListGroup.Item variant="warning" id="listItem1">
                                   <i>
                                       <h2 className="headerStatus">
-                                          USERNAME: {currentUser.username}
+                                         {currentUser.username}
                                       </h2>
                                   </i>
                               </ListGroup.Item>
                           )}
                           
                       </ListGroup>
+                      <ListGroup.Item variant='warning' id='listItem2'>
+                          <h3 className='headerStatus' aria-level={3}>{currentUser.position}</h3>
+                      </ListGroup.Item>
                   </Card>
               </Col>
               <Col>
@@ -77,9 +80,8 @@ export default function Header({currentUser, heading}) {
                           )}
                 </ul>
               </nav>
-                 
               </Col>
-              <Col>3 of 3</Col>
+              <Col></Col>
           </Row>
     </header>
   )
