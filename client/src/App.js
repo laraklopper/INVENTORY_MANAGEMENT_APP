@@ -176,7 +176,10 @@ export default function App() {
             />
             <Route path='/customers' element={
               <ProtectedAdminRoute currentUser={currentUser}>
-                <Customers/>
+                <Customers
+                currentUser={currentUser}
+                logout={logout}
+                />
               </ProtectedAdminRoute>}/>
             </>
           ):(

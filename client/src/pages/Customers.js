@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 export default function Customers({currentUser, logout}) {
   return (
     <>
-    <Header heading='/CUSTOMERS' currentUser={currentUser}/> 
+    <Header heading='CUSTOMERS' currentUser={currentUser}/> 
     <section>
 
     </section>

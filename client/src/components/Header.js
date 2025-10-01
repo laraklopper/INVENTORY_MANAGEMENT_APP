@@ -51,7 +51,8 @@ export default function Header({currentUser, heading}) {
                           )}            
                      
                       <ListGroup.Item variant='warning' id='listItem2'>
-                              <h3 className='headerStatus' aria-level={3}>   <BookUser color='black' /> {currentUser.position}</h3>
+                              <h3 className='headerStatus' aria-level={3}>   
+                                <BookUser color='black' /> {currentUser.position}</h3>
                       </ListGroup.Item>
                       </ListGroup>
                   </Card>
@@ -85,7 +86,7 @@ export default function Header({currentUser, heading}) {
                           )}
                           {currentUser?.admin && (
                               <li className='loginLinkItem'>
-                                  <Link className='refLink'>
+                                  <Link className='refLink' to='/customers'>
                                       <p className='linkIcon'><FileUser /></p>
                                       <p className='linkText'>CUSTOMERS</p>
                                   </Link>
