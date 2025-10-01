@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
+import './pageCss/DashBoard.css'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -6,9 +7,11 @@ import Stack from 'react-bootstrap/Stack';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { dateDisplay } from '../functions/dateFunctions';
-import { SquareUserRound } from 'lucide-react';
-import { DoorOpen } from 'lucide-react';
+import { SquareUserRound, NotebookTabs, DoorOpen, UserLock } from 'lucide-react';
+
 import UserDetails from '../components/UserDetails';
+import FormHeadings from '../components/FormHeadings';
+import EditPasswordForm from '../components/EditPasswordForm';
 
 export default function DashBoard({currentUser, logout}) {
   const [editUserData, setEditUserData] = useState({
@@ -31,6 +34,18 @@ export default function DashBoard({currentUser, logout}) {
     const showPasswordForm = activeForm === 'password'
   const firstName = currentUser?.fullName?.firstName || 'First name not provided';
   const lastName = currentUser?.fullName?.lastName || 'Last name not provided';
+
+
+  //===========EVENT HANDLERS / CALLBACKS =============
+  // Toggle functions for forms
+  // Toggle account form
+  const toggleAccountForm = useCallback(() => {
+    setActiveForm(prevForm => (prevForm === 'account' ? null : 'account'));
+  }, []);
+  // Toggle password form
+  const togglePasswordForm = useCallback(() => {
+    setActiveForm(prevForm => (prevForm === 'password' ? null : 'password'));
+  }, [])
   return (
     <>
     <Header heading='HOME' currentUser={currentUser}/>
@@ -59,7 +74,6 @@ export default function DashBoard({currentUser, logout}) {
           </Col>
           <Col></Col>
         </Row>
-         
           <UserDetails currentUser={currentUser}  dateDisplay={dateDisplay}/>    
           <Row>
             <Col></Col>
@@ -71,8 +85,9 @@ export default function DashBoard({currentUser, logout}) {
                     variant='warning'
                     type='button'
                     id='toggleEditUserBtn'
+                    onClick={toggleAccountForm}
                   >
-                    EDIT ACCOUNT
+                    {showAccountForm ? 'EXIT' : 'EDIT ACCOUNT'}<NotebookTabs />
                   </Button>
                 </div>
                 <div className="p-2" id='editPasswordDiv'>
@@ -81,8 +96,12 @@ export default function DashBoard({currentUser, logout}) {
                     variant='warning'
                     type='button'
                     id='toggleEditPasswordBtn'
+                    onClick={togglePasswordForm}
+                    aria-label='Button to toggle Edit Password Form'
+                    aria-expanded={showPasswordForm}
+                    aria-pressed={showPasswordForm}
                   >
-                    EDIT PASSWORD
+                    {showPasswordForm ? 'EXIT' : 'EDIT PASSWORD'} <UserLock />
                   </Button>
                 </div>
                 <div className="p-2"></div>
@@ -90,6 +109,21 @@ export default function DashBoard({currentUser, logout}) {
             </Col>
             <Col></Col>
           </Row>
+        </div>
+      </section>
+      <section id='editUserFormsSection'>
+        <div id='editUser'>
+          {showAccountForm && (
+            <div id='editUserDetails'>
+              <FormHeadings formHeading='EDIT DETAILS'/>
+            </div>
+          ) }
+          {showPasswordForm && (
+          <div id='editPasswordDetails'>
+            <FormHeadings formHeading='EDIT PASSWORD'/>
+            <EditPasswordForm/>
+          </div>
+          )}
         </div>
       </section>
     <Footer logout={logout} currentUser={currentUser}/>

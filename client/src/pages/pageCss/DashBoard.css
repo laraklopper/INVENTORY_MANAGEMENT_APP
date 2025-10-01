@@ -1,0 +1,46 @@
+#toggleEditUserBtn {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    color: #000;
+    font-weight: 700;
+    font-family: "Ubuntu Mono", monospace;
+    gap: 10px;
+}
+
+#toggleEditPasswordBtn {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    color: #000;
+    font-weight: 700;
+    gap: 10px;
+    font-family: "Ubuntu Mono", monospace;
+}
+#editPasswordForm {
+    display: flex;
+    background-color: #F5EC4C;
+    border: solid;
+    border-radius: 0px 0px 15px 15px;
+    padding: 10px;
+    margin: 5px 5px 01px 5px;
+    flex-direction: column;
+}
+#newPasswordInputStack {
+    display: flex;
+    background-color: #CCC53F;
+    flex-direction: column;
+    align-items: center;
+    border: solid black 3px;
+    padding: 10px;
+}
+.newPasswordLabel {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+#editPasswordBtnsBlock{
+    display: flex;
+    flex-direction: column;
+}
