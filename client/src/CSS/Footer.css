@@ -40,13 +40,13 @@
 }
 #company{
     display: flex;
-        gap: 10px;
-        text-transform: uppercase;
-        font-family: "Alkatra", system-ui;
-        text-decoration: underline;
-        width: 100%;
-            background-color: transparent;
-                border: none;
+    gap: 10px;
+    text-transform: uppercase;
+    font-family: "Alkatra", system-ui;
+    text-decoration: underline;
+    width: 100%;
+    background-color: transparent;
+    border: none;
 }
 #position {
     display: flex;
