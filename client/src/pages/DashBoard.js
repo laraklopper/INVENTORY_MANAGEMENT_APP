@@ -125,6 +125,7 @@ export default function DashBoard({currentUser, logout, setError}) {
             <FormHeadings formHeading='EDIT PASSWORD'/>
             <EditPasswordForm
             currentUser={currentUser}
+            setError={setError}
             />
           </div>
           )}

@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import '../CSS/Forms.css';
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
-import { EyeOff, LockOpen } from 'lucide-react';
-import { Eye } from 'lucide-react';
+import { EyeOff, LockOpen, Eye } from 'lucide-react';
+
 export default function LoginForm({setUserData, submitLogin, userData}) {
     const [showPassword, setShowPassword] = useState(false)
     const [passwordMsg, setPasswordMsg] = useState(false)
