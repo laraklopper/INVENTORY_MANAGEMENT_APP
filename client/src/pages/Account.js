@@ -11,7 +11,6 @@ import Footer from '../components/Footer'
 
 
 export default function Account({currentUser ,logout}) {
-  
 
   return (
     <>
