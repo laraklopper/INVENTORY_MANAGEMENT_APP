@@ -52,15 +52,19 @@ const customerSchema = new mongoose.Schema({
         },
     },
     shippingAddress: {
-        street:{
+        line1:{//Street/blockNumber
             type: String,
-            required: [true, 'Street Name is required'],
-            minlength: [2, 'Street name must be at least 2 characters long'],
-            maxlength: [50, 'Streetname cannot exceed 50 characters']
+            minlength: 1,
+            maxLength: 1000,
+        },
+        line2:{//Street/block
+            type: String,
+            minlength: 2,
+            maxLength: 100,
         },
         city:{
             type: String,
-            required: [true, 'City name is required'],
+            required: [true, 'City or town name is required'],
             trim: true,
             minlength: [2, 'City name must be at least 2 characters long'],
             maxlength: [50, 'City name cannot exceed 50 characters']
@@ -100,5 +104,20 @@ const customerSchema = new mongoose.Schema({
     toJSON: {virtuals: true}
 });
 
+//===============VIRTUALS====================
+customerSchema.virtual('fullNameString').get(function () {
+    const { firstName, lastName } = this.fullName;
+    return `${firstName} ${lastName}`.trim();
+})
 
+customerSchema.virtual('contactDetailsString').get(function () {
+    const { email = '', contactNumber = '' } = this.contactDetails;
+    return `Email: ${email}, Phone: ${contactNumber}`;
+})
+customerSchema.virtual('shippingAddressString').get(function () {
+    const {}
+})
+customerSchema.virtual('billingDetailsString').get(function (){
+    const
+})
 module.exports = mongoose.model('customers', customerSchema)
