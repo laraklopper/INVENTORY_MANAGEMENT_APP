@@ -1,6 +1,8 @@
 # INVENTORY_MANAGEMENT_APP
 
+## TABELE OF CONTENTS
 
+## APPLICATION SECURITY
 ## REFERENCES
 
 - https://www.npmjs.com/package/react-router-hash-link?activeTab=versions
