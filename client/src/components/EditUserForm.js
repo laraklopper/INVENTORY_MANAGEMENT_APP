@@ -44,7 +44,6 @@ export default function EditUserForm({editUserData, setEditUserData, currentUser
         }
     };
 
-
     //Function to clear form
     const clearForm = () => {
         const confirmClear = window.confirm("Are you sure you want to clear the form?");
@@ -67,8 +66,7 @@ export default function EditUserForm({editUserData, setEditUserData, currentUser
 
   return (
     <form id='editUserForm'>
-         
-          <Row>
+          <Row id='editUserFormRow1'>
               <Col xs={6} md={4}>
                  <label className='editUserLabel'>
                     <p className='labelText'>USERNAME:</p>
@@ -119,7 +117,7 @@ export default function EditUserForm({editUserData, setEditUserData, currentUser
                   </label>
               </Col>
             </Row>
-          <Row>
+          <Row id='editUserFormRow2'>
               <Col xs={12} md={8}>
                   <div id='editUserFullName'>
                       <label className='editUserLabel' htmlFor="editFirstName">
@@ -139,7 +137,7 @@ export default function EditUserForm({editUserData, setEditUserData, currentUser
                           />
                       </label>
                       <label htmlFor="editLastName" className='editUserLabel'>
-                          <p className='labelText'>Last Name:</p>
+                          <p className='labelText'>LAST NAME:</p>
                           <input
                               type="text"
                               className='input'
@@ -160,7 +158,7 @@ export default function EditUserForm({editUserData, setEditUserData, currentUser
                  
               </Col>
           </Row>
-          <Row>
+          <Row id='editUserFormRow3'>
               <Col xs={12} md={8}>
                   <div id='editUserContactDetails'>
                       <label className='editUserLabel'>

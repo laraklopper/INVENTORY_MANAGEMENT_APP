@@ -6,6 +6,33 @@
     
     border-radius: 8px;
 }
+#editUserFormRow1 {
+    margin: 10px 0px 0px 0px;
+    padding: 2px;
+    display: flex;
+    align-items: baseline;
+}
+
+#editUserFormRow2 {
+    margin: 10px 0px 0px 0px;
+    padding: 2px;
+    display: flex;
+    align-items: baseline;
+}
+
+#editUserFormRow3 {
+    margin: 10px 0px 0px 0px;
+    padding: 2px;
+    display: flex;
+    align-items: baseline;
+}
+
+#editUserFormRow4 {
+    margin: 10px 0px 0px 0px;
+    padding: 2px;
+    align-items: baseline;
+    display: flex;
+}
 #editUserFullName {
     display: flex;
     flex-direction: row;
@@ -19,7 +46,7 @@
     flex-direction: row;
     align-items: baseline;
     gap: 50px;
-    padding: 10px;
+    padding: 0px;
 }
 .editUserLabel {
     display: flex;
@@ -90,6 +117,19 @@
     gap: 10px;
     flex-direction: column;
     align-items: center;
+}
+#editPasswordRow1 {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    padding: 10px;
+}
+
+#editPasswordFormRow2 {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    padding: 10px;
 }
 #editPasswordCol {
     display: flex;
