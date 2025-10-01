@@ -11,19 +11,19 @@
     width: 100%;
     padding: 0px;
     list-style: none;
-        flex-direction: column;
-            text-decoration: underline;
+    flex-direction: column;
+    text-decoration: underline;
 }
 #footerRow {
     display: flex;
-        margin: 0px;
-        padding: 0px;
+    margin: 0px;
+    padding: 0px;
 }
 #footerStatusCol {
     display: flex;
     justify-content: flex-start;
-        padding: 0px;
-            margin: 0px;
+    padding: 0px;
+    margin: 0px;
 }
 #footerTimeCard {
     display: flex;
@@ -31,12 +31,12 @@
 #adminStatus {
     display: flex;
     gap: 10px;
-        text-transform: uppercase;
-        font-family: "Alkatra", system-ui;
-            text-decoration: underline;
+    text-transform: uppercase;
+    font-family: "Alkatra", system-ui;
+    text-decoration: underline;
     width: 100%;
-        background-color: transparent;
-            border: none;
+    background-color: transparent;
+    border: none;
 }
 #company{
     display: flex;
