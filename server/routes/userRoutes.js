@@ -254,7 +254,7 @@ router.post('/register', checkAge, checkPassword, async (req, res) => {
     }
 })
 
-//------------------------------------------
+//-----------------------PUT------------------------------
 //Route to edit a user
 //Send a put request to the /editUser/:id endpoint
 router.put('/editUser/:id', checkJwtToken, async (req, res) => {
