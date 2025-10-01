@@ -142,4 +142,6 @@ customerSchema.virtual('paymentDetailsString').get(function () {
     const notes = p.notes ? ` (Notes: ${p.notes.trim()})` : '';
     return `${paidText}${notes}`;
 });
+
+
 module.exports = mongoose.model('Customer', customerSchema)
