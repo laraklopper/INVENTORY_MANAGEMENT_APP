@@ -34,7 +34,7 @@ export default function DashBoard({currentUser, logout}) {
   return (
     <>
     <Header heading='HOME' currentUser={currentUser}/>
-    <section>
+      <section id='dashBoardSection1'>
         <Row>
           <Col></Col>
           <Col xs={5} id='welcomeCol'>
@@ -49,7 +49,8 @@ export default function DashBoard({currentUser, logout}) {
           <Col></Col>
         </Row>
     </section>
-      <section id='accountSection1'>
+      <section id='userDetailsSection'>
+        <div id='user'>
         <Row id='userHeadRow'>
           <Col></Col>
           <Col xs={5} id='detailsHeadCol'>
@@ -58,7 +59,7 @@ export default function DashBoard({currentUser, logout}) {
           </Col>
           <Col></Col>
         </Row>
-        <div id='user'> 
+         
           <UserDetails currentUser={currentUser}  dateDisplay={dateDisplay}/>    
           <Row>
             <Col></Col>
