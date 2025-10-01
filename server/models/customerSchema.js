@@ -10,6 +10,7 @@ const customerSchema = new mongoose.Schema({
         trim: true,
         set: (v) => v.toUpperCase(),
     },
+    //=================NESTED FULL NAME OBJECT===================
     fullName: {
         // Field for customer first name
         firstName: {
@@ -28,6 +29,7 @@ const customerSchema = new mongoose.Schema({
             maxlength: [50, 'Last name cannot exceed 50 characters'], 
         }
     },
+    //=================NESTED CONTACT DETAIL OBJECT=============
     contactDetails:{
         email:{
             type: String,
@@ -51,28 +53,34 @@ const customerSchema = new mongoose.Schema({
             }
         },
     },
+    //======================NESTED SHIPPING ADDRESS OBJECT===================
     shippingAddress: {
-        line1:{//Street/blockNumber
+        line1: {
+            // Street / block number
             type: String,
-            minlength: 1,
-            maxLength: 1000,
+            trim: true,
+            minlength: [1, 'Line 1 must be at least 1 character long'],
+            maxlength: [1000, 'Line 1 cannot exceed 1000 characters'],
         },
-        line2:{//Street/block
+        line2: {
+            // Street / block
             type: String,
-            minlength: 2,
-            maxLength: 100,
+            trim: true,
+            minlength: [2, 'Line 2 must be at least 2 characters long'],
+            maxlength: [100, 'Line 2 cannot exceed 100 characters'],
         },
         city:{
             type: String,
             required: [true, 'City or town name is required'],
             trim: true,
-            minlength: [2, 'City name must be at least 2 characters long'],
-            maxlength: [50, 'City name cannot exceed 50 characters']
+            minlength: [2, 'City or town name must be at least 2 characters long'],
+            maxlength: [50, 'City or town name cannot exceed 50 characters']
         },
         country: {
             type: String,
             reqiured: [true, 'Country is required'],
-            enum: ['Namibia', 'South Africa']
+            enum: ['Namibia', 'South Africa'],
+            trim: true,
         }, 
         province: {
             type: String,
@@ -81,6 +89,7 @@ const customerSchema = new mongoose.Schema({
             maxlength: [50, 'Province name cannot exceed 50 characters']
         },
     },
+    //===========NESTED PAYMENT DETAILS OBJECT===============
     paymentDetails:{
         paid: {
             type: Boolean,
@@ -96,13 +105,17 @@ const customerSchema = new mongoose.Schema({
     isActive: {
         type: Boolean,
         default: true
-
     }
 },{
     timestamps: true,
     toObject: {virtuals: true},
     toJSON: {virtuals: true}
 });
+
+// ===== Indexes (Mongo will create compound indexes for nested paths) =====
+customerSchema.index({ code: 1 }, { unique: true });
+customerSchema.index({ 'contactDetails.email': 1 }, { unique: true });
+customerSchema.index({ 'contactDetails.contactNumber': 1 }, { unique: true });
 
 //===============VIRTUALS====================
 customerSchema.virtual('fullNameString').get(function () {
@@ -114,10 +127,19 @@ customerSchema.virtual('contactDetailsString').get(function () {
     const { email = '', contactNumber = '' } = this.contactDetails;
     return `Email: ${email}, Phone: ${contactNumber}`;
 })
+
 customerSchema.virtual('shippingAddressString').get(function () {
-    const {}
-})
-customerSchema.virtual('billingDetailsString').get(function (){
-    const
-})
-module.exports = mongoose.model('customers', customerSchema)
+    const a = this.shippingAddress || {};
+    const parts = [a.line1, a.line2, a.city, a.province, a.country]
+        .filter(Boolean)
+        .map((s) => String(s).trim());
+    return parts.join(', ');
+});
+
+customerSchema.virtual('paymentDetailsString').get(function () {
+    const p = this.paymentDetails || {};
+    const paidText = p.paid ? 'Paid' : 'Unpaid';
+    const notes = p.notes ? ` (Notes: ${p.notes.trim()})` : '';
+    return `${paidText}${notes}`;
+});
+module.exports = mongoose.model('Customer', customerSchema)
