@@ -326,7 +326,7 @@ router.put('/editUser/:id', checkJwtToken, async (req, res) => {
 
 //Route to edit a user password
 //Send a put request to the /editPassword endpoint
-router.put('/editPassword', async (req, res) => {
+router.put('/editPassword', checkPassword, checkJwtToken, async (req, res) => {
     try {
         const {currentPassword, newPassword} = req.body || {};
 
@@ -351,6 +351,27 @@ router.put('/editPassword', async (req, res) => {
         return res.status(500).json({ message: 'Internal Server error' });
     }
     
+})
+
+//--------------------DELETE-----------------------------
+//Route to delete a user
+// Route to send a DELETE request to deleteUser/:id
+router.delete('/deleteUser/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const removedUser = await User.findById(id)
+
+        if (!removedUser) {
+            return res.status(404).json({ message: 'User Not found' })
+        }
+
+        console.log(`[DATA: userRoutes.js , /deleteUser/:id]: ${removedUser}`);
+
+        res.json({ message: 'User Successfully deleted', deletedUserId: removedUser._id })
+    } catch (error) {
+        console.error('[ERROR: userRoutes.js /deleteUser]Error deleting user:', error.message);//Log an error message in the console for debugging purposes
+        res.status(500).json({ error: 'Failed to delete User' });
+    }
 })
 //Export the userRouter
 module.exports = router;
