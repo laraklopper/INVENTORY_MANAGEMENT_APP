@@ -254,6 +254,104 @@ router.post('/register', checkAge, checkPassword, async (req, res) => {
     }
 })
 
+//------------------------------------------
+//Route to edit a user
+//Send a put request to the /editUser/:id endpoint
+router.put('/editUser/:id', checkJwtToken, async (req, res) => {
+    try {
+        const userId = req.params.id;
+
+        const { username, fullName = {}, companyName, contactDetails = {} } = req.body;
+        const { firstName, lastName } = fullName;
+        const { email, contactNumber } = contactDetails;
+
+        const updates = {}
+        if (typeof username === 'string' && username.trim() !== '') {
+            updates['userName'] = username.trim();
+        }
+        if (typeof firstName === 'string' && firstName.trim() !== '') {
+            updates['fullName.firstName'] = firstName.trim();
+        }
+        if (typeof lastName === 'string' && lastName.trim() !== '') {
+            updates['fullName.lastName'] = lastName.trim();
+        }
+        if (typeof companyName === 'string' && companyName.trim() !== '') {
+            updates['companyName'] = companyName.trim();
+        }
+        if (typeof email === 'string' && email.trim() !== '') {
+            updates['contactDetails.email'] = email.trim().toLowerCase();
+        }
+        if (typeof contactNumber === 'string' && contactNumber.trim() !== '') {
+            // keep raw; your schema validator will enforce format
+            updates['contactDetails.contactNumber'] = contactNumber.trim();
+        }
+
+        if (Object.keys(updates).length === 0) {
+            return res.status(400).json({ message: 'No valid fields supplied to update.' });
+        }
+
+        if (updates['contactDetails.email'] || updates['contactDetails.contactNumber']) {
+            const dup = await User.findOne({
+                _id: { $ne: userId },
+                $or: [
+                    updates['contactDetails.email']
+                        ? { 'contactDetails.email': updates['contactDetails.email'] }
+                        : null,
+                    updates['contactDetails.contactNumber']
+                        ? { 'contactDetails.contactNumber': updates['contactDetails.contactNumber'] }
+                        : null,
+                ].filter(Boolean),
+            }).exec();
+
+            if (dup) {
+                return res.status(409).json({ message: 'Email or contact number already in use.' });
+            }
+        }
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { $set: updates },
+            { new: true, runValidators: true, context: 'query' }
+        ).select('-password');
+
+        if (!updatedUser) return res.status(404).json({ message: 'User not found' });
+
+        console.log('[DATA: userRoutes.js,/editUser/:id ] updated user:', updatedUser);
+
+        return res.json({ message: 'User updated successfully', updatedUser, });
+    } catch (error) {
+        console.error('[ERROR: userRoutes.js,/editUser/:id] Error updating user:', error.message);
+        res.status(500).json({ error: 'Server error while updating user' });
+    }
+})
+
+//Route to edit a user password
+//Send a put request to the /editPassword endpoint
+router.put('/editPassword', async (req, res) => {
+    try {
+        const {currentPassword, newPassword} = req.body || {};
+
+        if (!currentPassword || !newPassword) {
+            return res.status(400).json({message: 'Current password and new password are required'})
+        }
+
+        const user = await User.findById(req.user.userId).select('+password').exec();
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        if (user.password !== currentPassword) {
+            return res.status(401).json({ message: 'Current password is incorrect' });
+        }
+        if (currentPassword === newPassword) {
+            return res.status(400).json({ message: 'New password must be different from old password' });
+        }
+        // Update password (plaintext) and save
+        user.password = newPassword;
+        await user.save();
+    } catch (error) {
+        console.error('[ERROR userRoutes.js] /editPassword:', err.message);;//Log an error message in the console for debugging purposes
+        return res.status(500).json({ message: 'Internal Server error' });
+    }
+    
+})
 //Export the userRouter
 module.exports = router;
 
