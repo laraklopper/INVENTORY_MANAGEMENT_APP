@@ -1,5 +1,9 @@
 import React, { useCallback, useState } from 'react'
 import './pageCss/Registration.css'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 import MainHeader from '../components/MainHeader';
 import RegistrationForm from '../components/RegistrationForm';
 import FormHeadings from '../components/FormHeadings';
@@ -117,6 +121,32 @@ export default function Register({setError}) {
             />
           </div>
         </section>
+      <section id='regisSection2'>
+        <Row id='regisRulesRow'>
+          <Col xs={6} md={6} id='rulesCol'>
+            <Card id='regisRulesCard'>
+              <Card.Header id='regisRulesHeader'>
+                <h3 id='regisRequire'>REGISTRATION REQUIREMENTS:</h3>
+                </Card.Header>
+              <ListGroup id='rulesList' variant="flush">
+                <ListGroup.Item id='ruleItem1'>
+                  <p className='rule'>PASSWORDS MUST BE AT LEAST 8 CHARACTERS AND AT LEAST ONE SPECIAL CHARACTER</p>
+                </ListGroup.Item>
+                <ListGroup.Item id='ruleItem2'>
+                  <p className='rule'> USERS MUST BE 18 OR OLDER</p>
+              
+                </ListGroup.Item>
+                <ListGroup.Item id='ruleItem3'>
+                  <p className='rule'>ONLY MANAGERS AND ADMIN POSITION HAVE ADMIN PRIVILEGES</p>
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+          
+          </Col>
+          <Col xs={6} md={6}>
+          </Col>
+        </Row>
+      </section>
     </>
   )
 }
