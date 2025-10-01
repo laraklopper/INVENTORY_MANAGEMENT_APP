@@ -65,13 +65,9 @@ const customerSchema = new mongoose.Schema({
             minlength: [2, 'City name must be at least 2 characters long'],
             maxlength: [50, 'City name cannot exceed 50 characters']
         },
-        postalCode:{
-            type: Number
-
-        },
         country: {
             type: String,
-            reqiured: 'true',
+            reqiured: [true, 'Country is required'],
             enum: ['Namibia', 'South Africa']
         }, 
         province: {
@@ -91,6 +87,12 @@ const customerSchema = new mongoose.Schema({
             maxLength: 2000,
             reqiured: false
         }
+    },
+    // If the customer has not yet paid the customer is active
+    isActive: {
+        type: Boolean,
+        default: true
+
     }
 });
 
