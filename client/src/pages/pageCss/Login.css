@@ -60,6 +60,7 @@
     padding: 7px;
     margin: 0px 0px 0px 0px;
     width: 180px;
+        gap: 10px;
 }
 .msgText{
     text-align: center;

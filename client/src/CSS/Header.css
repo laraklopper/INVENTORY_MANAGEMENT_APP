@@ -107,7 +107,20 @@ text-decoration: underline;
     margin:0px;
     padding: 0px;
 }
+#loginNavbar {
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+        flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+}
 .linkItem{
+    padding: 0px 10px 0px 10px;
+}
+.loginLinkItem {
     padding: 0px 10px 0px 10px;
 }
 .refLink{
@@ -118,7 +131,6 @@ text-decoration: underline;
     color: #134e50e6;
     border-radius: 8px;
         margin: 0px;
-        width: 150px;
     justify-content:center;
                 gap: 10px;
                 border: solid;
@@ -179,6 +191,11 @@ text-decoration: underline;
     display: flex;
         justify-content: flex-end;
         height: fit-content;
+}
+#navCol {
+    display: flex;
+    justify-content: flex-end;
+    height: fit-content;
 }
 #timeCard {
     display: flex;

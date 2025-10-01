@@ -4,8 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Link, BookUser, ClipboardList, User, House, Clock, FileUser } from 'react-router-dom';
-
+import { Link} from 'react-router-dom';
+import { BookUser, ClipboardList, User, House, Clock, FileUser } from 'lucide-react';
 export default function Header({currentUser, heading}) {
     const [currentTime, setCurrentTime] = useState(new Date())
 
@@ -21,7 +21,14 @@ export default function Header({currentUser, heading}) {
   return (
     <header className='header'>
           <Row id='headerRow'>
-              <Col></Col>
+              <Col id='timeCol'>
+                  <Card id='timeCard'>
+                      <Card.Body id='headerTimeBody'>
+
+                          <h2 className='formattedTime' aria-live='polite'><Clock id='clock' /> {formattedTime}</h2>
+                      </Card.Body>
+                  </Card>
+              </Col>
               <Col xs={6}>
                   <Card id='headerCard'>
                       <Card.Header id='cardHeader'>
@@ -49,56 +56,45 @@ export default function Header({currentUser, heading}) {
                       </ListGroup>
                   </Card>
               </Col>
-              <Col id='timeCol'>
-                  <Card id='timeCard'>
-                      <Card.Body id='headerTimeBody'>
-                          
-                          <h2 className='formattedTime' aria-live='polite'><Clock id='clock' /> {formattedTime}</h2>
-                      </Card.Body>
-                  </Card>
-              </Col>
-          </Row>
-          <Row>
-              <Col></Col>
-              <Col xs={6} id='navCol'>
-              <nav className='navigation'>
-                <ul id='navbar'>
+              <Col id='navCol'>
+                 
+                  <nav className='navigation'>
+                      <ul id='loginNavbar'>
                           {currentUser && (
-                              <li className='linkItem'>
+                              <li className='loginLinkItem'>
                                   <Link className='refLink' to='/'>
                                       <p className='linkIcon'><House /></p>
                                       <p className='linkText'>HOME</p>
-                                </Link>
+                                  </Link>
                               </li>
                           )}
                           {currentUser && (
-                            <li className='linkItem'>
-                                  <Link className='refLink' to='/account'> 
+                              <li className='loginLinkItem'>
+                                  <Link className='refLink' to='/account'>
                                       <p className='linkIcon'><User /></p>
                                       <p className='linkText'>ACCOUNT</p>
-                                   </Link>
-                            </li>
+                                  </Link>
+                              </li>
                           )}
                           {currentUser?.admin && (
-                            <li className='linkItem'>                                  
+                              <li className='loginLinkItem'>
                                   <Link className='refLink' to='/stock'>
-                                    <p className='linkIcon'><ClipboardList /></p>
-                                  <p className='linkText'>STOCK</p></Link>
-                            </li>
+                                      <p className='linkIcon'><ClipboardList /></p>
+                                      <p className='linkText'>STOCK</p></Link>
+                              </li>
                           )}
                           {currentUser?.admin && (
-                            <li>
-                                <Link className='refLink'>
+                              <li className='loginLinkItem'>
+                                  <Link className='refLink'>
                                       <p className='linkIcon'><FileUser /></p>
-                                    <p className='linkText'>CUSTOMERS</p>
-                                </Link>
-                            </li>
-                            
+                                      <p className='linkText'>CUSTOMERS</p>
+                                  </Link>
+                              </li>
+
                           )}
-                </ul>
-              </nav>
+                      </ul>
+                  </nav>
               </Col>
-              <Col></Col>
           </Row>
     </header>
   )

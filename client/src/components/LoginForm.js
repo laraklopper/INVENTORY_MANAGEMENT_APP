@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import '../CSS/Forms.css';
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
-import { EyeOff } from 'lucide-react';
+import { EyeOff, LockOpen } from 'lucide-react';
 import { Eye } from 'lucide-react';
 export default function LoginForm({setUserData, submitLogin, userData}) {
     const [showPassword, setShowPassword] = useState(false)
@@ -95,7 +95,7 @@ export default function LoginForm({setUserData, submitLogin, userData}) {
                     id='loginBtn'
                     aria-label='Submit Login Form Button'
                     >
-                        LOGIN
+                      <LockOpen />  LOGIN
                     </Button>
                   </div>
               </Stack>
