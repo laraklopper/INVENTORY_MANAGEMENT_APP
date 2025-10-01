@@ -12,6 +12,7 @@ import { SquareUserRound, NotebookTabs, DoorOpen, UserLock } from 'lucide-react'
 import UserDetails from '../components/UserDetails';
 import FormHeadings from '../components/FormHeadings';
 import EditPasswordForm from '../components/EditPasswordForm';
+import EditUserForm from '../components/EditUserForm';
 
 export default function DashBoard({currentUser, logout}) {
   const [editUserData, setEditUserData] = useState({
@@ -116,12 +117,15 @@ export default function DashBoard({currentUser, logout}) {
           {showAccountForm && (
             <div id='editUserDetails'>
               <FormHeadings formHeading='EDIT DETAILS'/>
+              <EditUserForm setEditUserData={setEditUserData} editUserData={editUserData} currentUser={currentUser}/>
             </div>
           ) }
           {showPasswordForm && (
           <div id='editPasswordDetails'>
             <FormHeadings formHeading='EDIT PASSWORD'/>
-            <EditPasswordForm/>
+            <EditPasswordForm
+            currentUser={currentUser}
+            />
           </div>
           )}
         </div>

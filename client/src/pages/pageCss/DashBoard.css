@@ -17,30 +17,21 @@
     gap: 10px;
     font-family: "Ubuntu Mono", monospace;
 }
-#editPasswordForm {
+#editUserDetails {
     display: flex;
-    background-color: #F5EC4C;
-    border: solid;
-    border-radius: 0px 0px 15px 15px;
-    padding: 10px;
-    margin: 5px 5px 01px 5px;
     flex-direction: column;
-}
-#newPasswordInputStack {
-    display: flex;
-    background-color: #CCC53F;
-    flex-direction: column;
-    align-items: center;
+    background-color: #B38705;
     border: solid black 3px;
+    border-radius: 5px;
     padding: 10px;
+        margin: 0px;
 }
-.newPasswordLabel {
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    align-items: center;
-}
-#editPasswordBtnsBlock{
+#editPasswordDetails {
     display: flex;
     flex-direction: column;
+    background-color: #B38705;
+    border: solid black 3px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px;
 }

@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import '../CSS/Forms.css'
+import '../CSS/EditUserDetails.css'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 
-export default function EditPasswordForm({currentUser}) {
+export default function EditPasswordForm() {
     const [currentPassword, setCurrentPassword] = useState('')
     const [newPassword, setNewPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -18,16 +21,15 @@ export default function EditPasswordForm({currentUser}) {
     <form id='editPasswordForm'>
           <Row>
               <Col>
-                  <ul id='instructList'>
-                      <li>
-                          <h6>PASSWORDS MUST BE AT LEAST 8 CHARACTERS AND AT LEAST ONE SPECIAL CHARACTER</h6>
-                      </li>
-                      <li>
-                          <h6>NEW PASSWORD MUST BE DIFFERENT TO THE CURRENT PASSWORD</h6>
-                      </li>
-                  </ul>
+                  <Card id='newPasswordInstructCard'>
+                      <ListGroup variant="flush" id='newPasswordRulesList'>
+                          <ListGroup.Item id='passwordRule1'><p>PASSWORDS MUST BE AT LEAST 8 CHARACTERS AND AT LEAST ONE SPECIAL CHARACTER</p></ListGroup.Item>
+                          <ListGroup.Item id='passwordRule2'><p>NEW PASSWORD MUST BE DIFFERENT TO THE CURRENT PASSWORD</p></ListGroup.Item>
+                      </ListGroup>
+                  </Card>
+                 
               </Col>
-              <Col xs={5}>
+              <Col xs={5} id='editPasswordCol'>
                   <Stack gap={3} id='newPasswordInputStack'>
                       <div className="p-2" id='currentPasswordBlock'>
                         <label className='newPasswordLabel' htmlFor='currentPasswordInput'>

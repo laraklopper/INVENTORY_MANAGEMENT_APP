@@ -1,0 +1,142 @@
+/* EDIT USER FORM */
+#editUserForm {
+    display: flex;
+    flex-direction: column;
+    background-color: #F5EC4C;
+    
+    border-radius: 8px;
+}
+#editUserFullName {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 50px;
+    padding: 10px;
+}
+
+#editUserContactDetails {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 50px;
+    padding: 10px;
+}
+.editUserLabel {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+}
+#positionInput {
+    display: flex;
+    font-family: "Signika", sans-serif;
+    align-items: center;
+    gap: 10px;
+    text-transform: capitalize;
+    font-weight: 700;
+    text-align: center;
+    border: solid black 2px;
+    border-radius: 5px;
+    padding: 5px;
+    width: 180px;
+    font-size: 16px;
+}
+/* Buttons */
+#editUserBtn {
+    width: 180px;
+    font-family: "Ubuntu Mono", monospace;
+    padding: 7px;
+    display: block;
+    text-transform: uppercase;
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+#cancelEditUserBtn {
+    width: 180px;
+    font-family: "Ubuntu Mono", monospace;
+    padding: 7px;
+    text-transform: uppercase;
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+    display: block;
+    float: right;
+
+}
+/* EDIT USER PASSWORD FORM */
+#editPasswordForm {
+    display: flex;
+    background-color: #F5EC4C;
+   
+    border-radius: 8px;
+    padding: 10px;
+    margin: 5px 5px 01px 5px;
+    flex-direction: column;
+}
+
+#newPasswordInputStack {
+    display: flex;
+        background-color: silver;
+            border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    border: solid black 3px;
+    padding: 10px;
+}
+
+.newPasswordLabel {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+#editPasswordCol {
+    display: flex;
+    width: 350px;
+}
+#editPasswordBtnsBlock {
+    display: flex;
+    flex-direction: column;
+}
+/* Buttons */
+#newPasswordBtn {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    padding: 7px;
+    width: 180px;
+    font-family: "Ubuntu Mono", monospace;
+    text-transform: uppercase;
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+
+}
+
+#cancelPasswordChangeBtn {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    padding: 7px;
+    width: 180px;
+    font-family: "Ubuntu Mono", monospace;
+    padding: 7px;
+    text-transform: uppercase;
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+
+}
+#newPasswordInstructCard{
+        border: none;
+            background: transparent;
+}
+#passwordRule1{
+    border: none;
+        background: transparent;
+}
+#passwordRule2 {
+    border: none;
+    background: transparent;
+}
