@@ -11,6 +11,7 @@ import Stock from './pages/Stock';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Account from './pages/Account';
+import Customers from './pages/Customers';
 
 
 export default function App() {
@@ -165,10 +166,7 @@ export default function App() {
               </ProtectedUserRoute>
             }/>
             <Route path='/stock' element={
-              <ProtectedAdminRoute
-                currentUser={currentUser}
-              
-              >
+              <ProtectedAdminRoute currentUser={currentUser}>
                 <Stock
                 currentUser={currentUser}
                 logout={logout}
@@ -176,6 +174,10 @@ export default function App() {
               </ProtectedAdminRoute>
             }
             />
+            <Route path='/customers' element={
+              <ProtectedAdminRoute currentUser={currentUser}>
+                <Customers/>
+              </ProtectedAdminRoute>}/>
             </>
           ):(
             <>

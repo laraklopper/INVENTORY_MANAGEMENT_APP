@@ -4,12 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Link } from 'react-router-dom';
-import { ClipboardList } from 'lucide-react';
-import { User } from 'lucide-react';
-import { House } from 'lucide-react';
-import { BookUser } from 'lucide-react';
-import { Clock } from 'lucide-react';
+import { Link, BookUser, ClipboardList, User, House, Clock, FileUser } from 'react-router-dom';
+
 export default function Header({currentUser, heading}) {
     const [currentTime, setCurrentTime] = useState(new Date())
 
@@ -41,7 +37,7 @@ export default function Header({currentUser, heading}) {
                               <ListGroup.Item variant="warning" id="listItem1">
                                   <i>
                                       <h2 className="headerStatus">
-                                          <User color='black'/>     {currentUser.username}
+                                          <User color='black'/>{currentUser.username}
                                       </h2>
                                   </i>
                               </ListGroup.Item>
@@ -89,6 +85,15 @@ export default function Header({currentUser, heading}) {
                                     <p className='linkIcon'><ClipboardList /></p>
                                   <p className='linkText'>STOCK</p></Link>
                             </li>
+                          )}
+                          {currentUser?.admin && (
+                            <li>
+                                <Link className='refLink'>
+                                      <p className='linkIcon'><FileUser /></p>
+                                    <p className='linkText'>CUSTOMERS</p>
+                                </Link>
+                            </li>
+                            
                           )}
                 </ul>
               </nav>
