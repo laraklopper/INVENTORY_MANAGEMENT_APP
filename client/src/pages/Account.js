@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './pageCss/Account.css'
 import '../CSS/DataList.css'
 import Row from 'react-bootstrap/Row';
@@ -12,7 +12,24 @@ import { SquareUserRound, Phone, Mail, ShieldUser, Calendar, User, Building2, Sm
 
 
 export default function Account({currentUser ,logout}) {
-  
+  const [editUserForm, setEditUserForm] = useState({
+    username: currentUser?.username || '',
+    companyName: currentUser?.companyName || '',
+    position: currentUser.position || '',
+    fullName: {
+      firstName: currentUser?.fullName?.firstName || '',
+      lastName: currentUser?.fullName?.lastName || ''
+    },
+    contactDetails: {
+      email: currentUser?.contactDetails?.email || '',
+      contactNumber: currentUser?.contactDetails?.contactNumber || ''
+    },
+  })
+  const [activeForm, setActiveForm] = useState(null)
+
+  // State to manage whether the user is in edit mode
+  const showAccountForm = activeForm === 'account'
+  const showPasswordForm = activeForm === 'password'
 
   //User details variables
   const username = currentUser?.username || 'Username Not provided'
