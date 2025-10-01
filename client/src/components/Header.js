@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Link} from 'react-router-dom';
-import { BookUser, ClipboardList, User, House, Clock, FileUser } from 'lucide-react';
+import { BookUser, ClipboardList, User, House, Clock, FileUser, Calculator } from 'lucide-react';
 export default function Header({currentUser, heading}) {
     const [currentTime, setCurrentTime] = useState(new Date())
 
@@ -72,7 +72,8 @@ export default function Header({currentUser, heading}) {
                           {currentUser && (
                               <li className='loginLinkItem'>
                                   <Link className='refLink' to='/account'>
-                                      <p className='linkIcon'><User /></p>
+                                      <p className='linkIcon'>    <Calculator />
+</p>
                                       <p className='linkText'>ACCOUNT</p>
                                   </Link>
                               </li>
