@@ -157,6 +157,7 @@ export default function App() {
                 users={users}
                 currentUser={currentUser}
                 logout={logout}
+                setError={setError}
                 />
               </ProtectedUserRoute>
             }/>

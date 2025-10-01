@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import '../CSS/Forms.css'
 import '../CSS/EditUserDetails.css'
 import Row from 'react-bootstrap/Row';
@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-export default function EditPasswordForm() {
+export default function EditPasswordForm({setError}) {
     const [currentPassword, setCurrentPassword] = useState('')
     const [newPassword, setNewPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -17,6 +17,10 @@ export default function EditPasswordForm() {
         setCurrentPassword('');
         setNewPassword('');
     };
+
+    const editPassword = useCallback(async (e) => {
+        e.preventDefault()
+    })
   return (
     <form id='editPasswordForm'>
           <Row>

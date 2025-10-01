@@ -14,7 +14,7 @@ import FormHeadings from '../components/FormHeadings';
 import EditPasswordForm from '../components/EditPasswordForm';
 import EditUserForm from '../components/EditUserForm';
 
-export default function DashBoard({currentUser, logout}) {
+export default function DashBoard({currentUser, logout, setError}) {
   const [editUserData, setEditUserData] = useState({
     username: currentUser?.username || '',
     companyName: currentUser?.companyName || '',
