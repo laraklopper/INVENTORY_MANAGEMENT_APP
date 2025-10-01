@@ -94,6 +94,11 @@ const customerSchema = new mongoose.Schema({
         default: true
 
     }
+},{
+    timestamps: true,
+    toObject: {virtuals: true},
+    toJSON: {virtuals: true}
 });
+
 
 module.exports = mongoose.model('customers', customerSchema)
