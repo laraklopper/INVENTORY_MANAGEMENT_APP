@@ -77,18 +77,18 @@ const customerSchema = new mongoose.Schema({
             minlength: [2, 'City or town name must be at least 2 characters long'],
             maxlength: [50, 'City or town name cannot exceed 50 characters']
         },
-        country: {
-            type: String,
-            reqiured: [true, 'Country is required'],
-            enum: ['Namibia', 'South Africa'],
-            trim: true,
-        }, 
         province: {
             type: String,
             trim: true,
             minlength: [2, 'Province name must be at least 2 characters long'],
             maxlength: [50, 'Province name cannot exceed 50 characters']
         },
+        country: {
+            type: String,
+            reqiured: [true, 'Country is required'],
+            enum: ['Namibia', 'South Africa'],
+            trim: true,
+        },     
     },
     //===========NESTED PAYMENT DETAILS OBJECT===============
     paymentDetails:{
