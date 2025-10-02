@@ -5,22 +5,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         trim: true,
     }, 
-    orderedBy: {
-        companyName: {
-            type: String,
-            required: true,
-            trim: true,
-            minlength: [2, 'Company name must be at least 2 characters long'],
-            maxlength: [50, 'Company name cannot exceed 50 characters'],
-            index: true,
-        },
-        username: {
-            type: String,
-            trim: true,
-            required: [true, 'username is required'],
-            index: true,
-        }
-    },
+  
     productTitle: {
         type: String,
         required: [true, 'Product title is required'],
@@ -49,11 +34,7 @@ const productSchema = new mongoose.Schema({
         required: [true, 'Selling price is required'],
         min: [0.01, 'Selling price must be greater 0'],
     },
-    dateOrdered: {
-        type: Date,
-        required: true,
-        default: Date.now,
-    },
+   
     },{
       timestamps: true,
       toJSON: {virtuals: true},
