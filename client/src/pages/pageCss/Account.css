@@ -1,101 +1,148 @@
-/* SECTION 1 */
-#accountSection1 {
+#toggleCalculatorStack{
+        display: flex;
+            align-items: center;
+            padding: 10px 0px 0px 0px;
+}
+#calculatorRow {
     display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    margin: 10px 0px 5px 0px;
+    width: 100%;
+}
+#calculatorCol {
+    display: flex;
+    padding: 0px;
+    margin: 0px 0px 5px 0px;
     flex-direction: column;
+    
+}
+#calculator {
+    display: flex;
+    margin: 10px 5px;
+    flex-direction: column;
+    padding: 15px;
+    justify-content: center;
+    background-color: #6c757d;
+
+    border-radius: 10px;
+}
+#calculatorDisplayStack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px 0px 0px;
+    background-color: #6c757d;
+    border-radius: 8px;
+}
+.para2{
+    display: flex;
     align-items: baseline;
     gap: 10px;
-    padding: 10px 5px 10px 5px;
-    background-color: #AB9100;
-    width: 100%;
-    border: solid black 4px;
-    margin: 0px 0px;
+    padding: 0px;
+        margin: 0px;
+        font-family: "Signika", sans-serif;
+        font-weight: 700;
 }
-#user {
-    background-color: #998200;
-    padding: 5px;
-    margin: 10px 5px 10px 5px;
-    border: solid black;
-    border-radius: 5px;
-        width: 100%;
-}
-#editAccountDiv{
+#amountDiv{
     display: flex;
-    justify-content: center;
-        align-items: baseline;
-    
-    gap: 10px;
-    padding: 10px 5px 10px 5px;
-    background-color: #AB9100;
-    width: 100%;
-   
-    margin: 10px 0px 10px 0px;
-}
-#editPasswordDiv {
-    display: flex;
-    
-    justify-content: center;
-        align-items: baseline;
-    gap: 10px;
-    padding: 10px 5px 10px 5px;
-    background-color: #AB9100;
-    width: 100%;
-    
-    margin: 10px 0px 10px 0px;
-}
-.userDetailsLabel{
-    display: flex;
-    text-transform: uppercase;
         align-items: baseline;
         gap: 10px;
-        font-family: "Roboto Condensed", sans-serif;
 }
-#toggleEditUserBtn {
+#calculatorDiv {
     display: flex;
-        justify-content: center;
-    width: 200px;
-    color: #000;
-    font-weight: 700;
-    font-family: "Ubuntu Mono", monospace;
+    padding: 10px 5px;
+        margin: 0px;
+        background-color: silver;
+            border: solid;
+                border-radius: 10px;
     gap: 10px;
+    flex-direction: column;
 }
-#toggleEditPasswordBtn {
+#timeDiv {
     display: flex;
-        justify-content: center;
-    width: 200px;
-    color: #000;
-    font-weight: 700;
-    gap: 10px;
-    font-family: "Ubuntu Mono", monospace;
-}
-#detailsHeadCol {
-    display: flex;
+        align-items: baseline;
+        gap: 10px;
         align-items: center;
-        justify-content: center;
+            flex-direction: column;
+}
+#amountBlock {
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    font-family: "Ubuntu Mono", monospace;
+    text-align: center;
+    font-weight: 900;
+    padding: 0px;
+    margin: 0px;
+}
+#interestBlock {
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    font-family: "Ubuntu Mono", monospace;
+    text-align: center;
+    font-weight: 900;
+    padding: 0px;
+    margin: 0px;
+}
+#totalInterest {
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    font-family: "Ubuntu Mono", monospace;
+    text-align: center;
+    font-weight: 900;
+    padding: 0px;
+    margin: 0px;
+}
+.calculatorLabel {
+    display: flex;
+    margin: 10px 5px;
+    flex-direction: column;
+    padding: 15px;
+    justify-content: center;
+    background-color: #6c757d;
+
+    border-radius: 10px;
+}
+.interest {
+    font-family: "Signika", sans-serif;
+    text-align: center;
+    font-weight: 900;
+    color: #000000;
+    margin: 0px;
+    padding: 0px;
+}
+/* text */
+.calculatorLabel {
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+#calculatorHeading {
+    font-weight: 800;
+    font-family: "Alkatra", system-ui;
+    text-align: center;
+    font-size: 24px;
+    color: gold;
+}
+/* Button */
+#calculateBtn {
+    font-family: "Ubuntu Mono", monospace;
+    color: black;
+    width: 200px;
+    padding: 5px;
+        font-size: 20px;
+    font-weight: 700;
+    border: none;
+}
+#toggleCalculatorBtn {
+    display: flex;
+    justify-content: center;
+    width: 300px;
     color: #000;
     font-weight: 700;
+    font-family: "Ubuntu Mono", monospace;
     gap: 10px;
-}
-#detailsIcon {
-    display: flex;
-    align-items: center;
-    
-}
-#userDetailsHead {
-    display: flex;
-    font-family: "Roboto Condensed", sans-serif;
-    align-items: center;
-    text-decoration: underline;
-}
-#userDetailsRow {
-        border-radius: 5px;
-    margin: 0px;
-    display: flex;
-        background-color:#CCC53F;
-        padding: 0px 10px;
-}
-#userHeadRow {
-    margin: 0px;
-    display: flex;
-    padding: 0px 10px;
-    margin: 10px 0px 10px 0px;
 }
