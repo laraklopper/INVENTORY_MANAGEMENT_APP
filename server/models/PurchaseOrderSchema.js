@@ -1,4 +1,3 @@
-// models/PurchaseOrder.js
 // Simple PO header + lines. Receive against PO to create RECEIPT transactions.
 const mongoose = require('mongoose');
 
