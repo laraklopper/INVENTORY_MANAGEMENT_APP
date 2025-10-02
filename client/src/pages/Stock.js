@@ -12,10 +12,9 @@ export default function Stock({currentUser, logout}) {
   <section id='stockPageSection1'>
         <Row>
           <Col xs={6} md={4}>
-            xs=6 md=4
           </Col>
           <Col xs={6} md={4}>
-            xs=6 md=4
+            
           </Col>
           <Col xs={6} md={4}>
             xs=6 md=4
