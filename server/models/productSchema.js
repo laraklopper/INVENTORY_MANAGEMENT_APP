@@ -39,11 +39,6 @@ const productSchema = new mongoose.Schema({
         ref: 'Supplier',
         required: [true, 'Product supplier is required'] 
     },
-    quantity: {
-        type: Number,
-        required: [true, 'Quantity is required'],
-        min: [0, 'quantity must be greater than 0'],
-    },
     purchasePrice: {
         type: Number,
         required: [true, 'Purchase price is required'],
