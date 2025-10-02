@@ -6,9 +6,10 @@ const contactNumberRegex = /^(\+27|0)\d{2}[ ]?\d{3}[ ]?\d{4}$/;// Regular expres
 const customerSchema = new mongoose.Schema({
     code: {
         type: String,
+        unique: true,                 
         reqiured: [true, 'Customer code is required'],
         trim: true,
-        set: (v) => v.toUpperCase(),
+        set: (v) => (v ? String(v).toUpperCase().trim() : v),
     },
     //=================NESTED FULL NAME OBJECT===================
     fullName: {
