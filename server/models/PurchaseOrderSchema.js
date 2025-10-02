@@ -63,13 +63,20 @@ const purchaseOrderSchema = new mongoose.Schema({
         default: 'DRAFT',
         required: true,
     },
-    currency: { 
-        type: String,
-        enum: ['ZAR', 'NAD', 'OTHER'],
-        default: 'ZAR',//Namibian dollar or RAND  other 
-        uppercase: true,
-        trim: true,
-        required: [true , 'Currency is required'],
+    priceDetails:{
+        purchasePrice: {
+            type: Number,
+            required: [true, 'Purchase price is required'],
+            min: [0.01, 'Purchase price must be greater 0'],
+        },
+        currency: {
+            type: String,
+            enum: ['ZAR', 'NAD', 'OTHER'],
+            default: 'ZAR',//Namibian dollar or South African RAND or  other 
+            uppercase: true,
+            trim: true,
+            required: [true, 'Currency is required'],
+        },
     },
     lines: { 
         type: [poLineSchema], 

@@ -24,8 +24,15 @@ const stockSchema = new mongoose.Schema({
         min: 0 
     }, // committed to sales/orders
     safetyStock: { 
-        type: Number, default: 0, min: 0 },
-}, { timestamps: true });
+        type: Number, 
+        default: 0, 
+        min: 0 
+    },
+}, { 
+    timestamps: true,
+    toJSON: {virtuals:true},
+    toObject: {virtuals: true}
+ });
 
 // (productTitle, productCode) must be unique
 stockLevelSchema.index({ productTitle: 1, code: 1}, { unique: true });
