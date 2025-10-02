@@ -55,20 +55,13 @@ const customerSchema = new mongoose.Schema({
         },
     },
     //======================NESTED SHIPPING ADDRESS OBJECT===================
-    shippingAddress: {
-        line1: {
-            // Street / block number
-            type: String,
-            trim: true,
-            minlength: [1, 'Line 1 must be at least 1 character long'],
-            maxlength: [1000, 'Line 1 cannot exceed 1000 characters'],
-        },
-        line2: {
+    shippingAddress: {    
+        streetAddress: {
             // Street / block
             type: String,
             trim: true,
             minlength: [2, 'Line 2 must be at least 2 characters long'],
-            maxlength: [100, 'Line 2 cannot exceed 100 characters'],
+            maxlength: [1000, 'Line 2 cannot exceed 1000 characters'],
         },
         city:{
             type: String,
@@ -76,6 +69,11 @@ const customerSchema = new mongoose.Schema({
             trim: true,
             minlength: [2, 'City or town name must be at least 2 characters long'],
             maxlength: [50, 'City or town name cannot exceed 50 characters']
+        },
+        postalCode: {
+            type: String,
+            trim: true,
+            maxlength: [12, 'Postal code cannot exceed 12 characters'],
         },
         province: {
             type: String,
@@ -131,7 +129,7 @@ customerSchema.virtual('contactDetailsString').get(function () {
 
 customerSchema.virtual('shippingAddressString').get(function () {
     const a = this.shippingAddress || {};
-    const parts = [a.line1, a.line2, a.city, a.province, a.country]
+    const parts = [, a.streetAddress, a.city, a.postalCode, a.province, a.country]
         .filter(Boolean)
         .map((s) => String(s).trim());
     return parts.join(', ');
