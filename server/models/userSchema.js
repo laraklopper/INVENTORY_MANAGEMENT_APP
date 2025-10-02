@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Username is required'],
         minlength: [2, 'Username must be at least 2 characters long'],
         maxlength: [50, 'Username cannot exceed 50 characters'],
+        unique: true,
     },
     companyName: {
         type: String,
@@ -109,9 +110,6 @@ function cap(str) {
 
 // Pre-save hook to capitalize name and company
 userSchema.pre('save', function (next) {
-    if (this.username) {
-        this.username = cap(this.username);
-    }
     if (this.fullName?.firstName) {
         this.fullName.firstName = cap(this.fullName.firstName);
     }
