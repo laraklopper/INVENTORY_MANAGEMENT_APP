@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
+    productCode: {
+        type: String,
+        trim: true,
+    }, 
     orderedBy: {
         companyName: {
             type: String,
@@ -17,21 +21,18 @@ const productSchema = new mongoose.Schema({
             index: true,
         }
     },
-    productDetails: {
-        code: {
-            type: String,
-            trim: true,
-        }, 
-        title: {
-            type: String,
-            minlength: [2, 'Product title must be at least 2 characters long'],
-            maxlength: [50, 'Product title cannot exceed 50 characters'],
-        },
-        description: { 
-            type: String, 
-            maxlength: 4000,
-            minlength: 2,
-         },
+    productTitle: {
+        type: String,
+        required: [true, 'Product title is required'],
+        trim: true,
+        minlength: [2, 'Product title must be at least 2 characters long'],
+        maxlength: [50, 'Product title cannot exceed 50 characters'],
+    },
+    description: {
+        type: String, 
+        required: [true, 'productDescription is required'],
+        maxlength: 4000,
+        minlength: 2,
     },
     defaultSupplier: { 
         type: mongoose.Schema.Types.ObjectId, 
@@ -69,10 +70,6 @@ const productSchema = new mongoose.Schema({
         const { companyName = '', username = '' } = this.orderedBy;
         return `Company: ${companyName}, User: ${username}`;
     });
-    productSchema.virtual('productDetailsString').get(function () {
-        const { code= '', productTitle = '', productDescription = '' } = this.product;
-        return `Code: ${code} Title:  ${productTitle}, Description: ${productDescription}`
-    })
 
     //Export the product schema
     module.exports = mongoose.model('Products', productSchema)
