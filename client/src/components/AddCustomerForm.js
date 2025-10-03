@@ -25,7 +25,9 @@ export default function AddCustomerForm() {
                           <input
                               className='input'
                               type='text'
+                              required
                               placeholder='FIRST NAME'
+                              autoComplete='given-name'
                           />
                       </label>
                       <label className='newCustomerLabel'>
@@ -33,7 +35,9 @@ export default function AddCustomerForm() {
                           <input
                               className='input'
                               type='text'
+                              autoComplete='family-name'
                               placeholder='LAST NAME'
+                              required
                           />
                       </label>
                   </div>
@@ -97,11 +101,16 @@ export default function AddCustomerForm() {
                                  
                               
                           </div>
-                          <div className="p-2">
+                          <div className="p-2" id='addressBlock2'>
                               <label className='newCustomerLabel'>
                                   <p className='labelText'>CITY/TOWN:</p>
                                   <input
                                       className='input'
+                                      type='text'
+                                      placeholder='CITY/TOWN'
+                                      required
+                                      aria-required='true'
+
                                   />
                               </label>
                               <label className='newCustomerLabel'>

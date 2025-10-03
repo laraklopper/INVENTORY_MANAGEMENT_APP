@@ -1,12 +1,43 @@
+#addCustomerForm{
+display: flex;
+flex-direction: column;
+background-color: #A39E33;
+padding: 10px;
+}
 .newCustomerLabel {
     display: flex;
     gap: 10px;
     align-items: baseline;
 }
+
 #customerShippingAddress {
         background-color: orange;
+        padding: 10px;
+            margin: 10px;
+}
+#customerAddressHeading{
+    text-align: center;
 }
 #addressHeadCol {
     display: flex;
     justify-content: center;
+}
+#streetAddressinput {
+    width: 350px;
+            border: 2px solid #000000;
+        border-radius: 5px;
+        padding: 3px;
+        font-weight: 600;
+        font-family: "Signika", sans-serif;
+}
+#addressBlock2{
+    display: flex;
+    gap: 15px;
+}
+#addressBlock3 {
+    display: flex;
+    gap: 15px;
+}
+#addressStack{
+    display: flex;
 }
