@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-export default function AddCustomerForm() {
+export default function AddCustomerForm({newCustomerData}) {
   return (
     <form id='addCustomerForm' >
           <Row id='newCustomerRow1'>
@@ -144,7 +144,26 @@ export default function AddCustomerForm() {
                   </Col>
               </Row>
           </div>
-        
+          <Row>
+              <Col xs={12} md={8}>
+                  <div>
+                    <label>
+                        <p className='labelText'>PAID</p>
+                        <input
+                        type='checkbox'
+                        />
+                    </label>
+                    <label>
+                        <p className='labelText'>NOTES:</p>
+                        <textarea/>
+                    </label>
+                  </div>
+              </Col>
+              <Col xs={6} md={4}>
+                  xs=6 md=4
+              </Col>
+          </Row>
+
           <Row id='newCustomerRow3'>
             <Col>
                   <Stack direction="horizontal" gap={3}>

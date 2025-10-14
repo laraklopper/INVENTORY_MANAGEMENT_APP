@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './pageCss/Customers.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,6 +10,32 @@ import AddCustomerForm from '../components/AddCustomerForm';
 
 
 export default function Customers({currentUser, logout}) {
+  const [newCustomerData, setNewCustomerData] = useState({
+    code: '',
+    fullName: {
+      firstName: '',
+      lastName: '',
+    },
+    contactDetails:{
+      email: '',
+      contactNumber: '',
+    },
+    shippingAddress: {
+      street: '',
+      city: '',
+      postalCode: '',
+      province:'',
+      country: '',
+    },
+    paymentDetails: {
+      paid: false,
+      notes: '',
+    },
+    isActive: false,
+  })
+
+  //======================================
+  
   return (
     <>
     <Header heading='CUSTOMERS' currentUser={currentUser}/> 
@@ -26,7 +52,7 @@ export default function Customers({currentUser, logout}) {
           <Col></Col>
         </Row>
       <div>
-        <FormHeadings/>
+        <FormHeadings formHeading='ADD CUSTOMER'/>
         <AddCustomerForm/>
       </div>
     </section>
