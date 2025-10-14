@@ -34,16 +34,9 @@ const productSchema = new mongoose.Schema({
     },
    
     },{
-      timestamps: true,
-      toJSON: {virtuals: true},
-      toObject: {virtuals:true}  
+      timestamps: true
     })
 
-    //==============VIRTUALS===================
-    productSchema.virtual('orderedByString').get(function () {
-        const { companyName = '', username = '' } = this.orderedBy;
-        return `Company: ${companyName}, User: ${username}`;
-    });
 
     //Export the product schema
     module.exports = mongoose.model('Products', productSchema)
