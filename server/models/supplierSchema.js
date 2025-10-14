@@ -25,18 +25,21 @@ const supplierSchema = new mongoose.Schema({
             maxlength: [50, 'Last name cannot exceed 50 characters'],
         },
     },
-    email: {
-        type: String,
-        required: [true, 'User email is required'],
-        trim: true,
-        lowercase: true,
-        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    contactDetails: {
+        email: {
+            type: String,
+            required: [true, 'User email is required'],
+            trim: true,
+            lowercase: true,
+            match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        },
+        contactNumber: {
+            type: String,
+            trim: true,
+            required: [true, 'Contact number is required'],
+        },
     },
-    contactNumber: {
-        type: String,
-        trim: true,
-        required: [true, 'Contact number is required'],
-    },
+  
     address: {
         line1: {
             // Street / block number
@@ -85,7 +88,66 @@ const supplierSchema = new mongoose.Schema({
     toObject:{virtuals: true}
  });
 
-supplierSchema.index({ code: 1 }, { unique: true });
-supplierSchema.index({ name: 1 });
+const joinDefined = (arr, sep = ', ') =>
+    arr.filter(Boolean).map(s => String(s).trim()).filter(Boolean).join(sep);
 
+supplierSchema.virtual('name')
+    .get(function () {
+        const f = this.fullName?.firstName || '';
+        const l = this.fullName?.lastName || '';
+        return joinDefined([f, l], ' ');
+    })
+    .set(function (v) {
+        if (typeof v !== 'string') return;
+        const parts = v.trim().split(/\s+/);
+        const firstName = parts.shift() || '';
+        const lastName = parts.length ? parts.join(' ') : '';
+        this.fullName = { ...(this.fullName || {}), firstName, lastName };
+    });
+
+supplierSchema.virtual('contactSummary').get(function () {
+    const email = this.contactDetails?.email;
+    const phone = this.contactDetails?.contactNumber;
+    return joinDefined([email, phone], ' • ');
+});
+
+/**
+ * addressOneLine
+ * - Single-line formatted address
+ *   e.g., "12 Main Rd, Gardens, Cape Town, Western Cape, South Africa"
+ */
+supplierSchema.virtual('addressOneLine').get(function () {
+    const a = this.address || {};
+    return joinDefined([a.line1, a.line2, a.city, a.province, a.country]);
+});
+
+/**
+ * addressMultiLine
+ * - Multi-line formatted address for documents/labels
+ */
+supplierSchema.virtual('addressMultiLine').get(function () {
+    const a = this.address || {};
+    const lines = [
+        joinDefined([a.line1, a.line2]),
+        joinDefined([a.city, a.province]),
+        a.country,
+    ].filter(Boolean);
+    return lines.join('\n');
+});
+
+// ===================== Indexes =======================
+// Unique code stays
+supplierSchema.index({ code: 1 }, { unique: true });
+
+// You cannot index a virtual ("name") at the database level.
+// Use a compound index on the real fields for fast name searches:
+supplierSchema.index({ 'fullName.firstName': 1, 'fullName.lastName': 1 });
+
+// Optional: text index to support flexible name/email searches in one go.
+// (Be mindful of text index limitations if you already use other text indexes.)
+supplierSchema.index({
+    'fullName.firstName': 'text',
+    'fullName.lastName': 'text',
+    'contactDetails.email': 'text',
+});
 module.exports = mongoose.model('Supplier', supplierSchema);
