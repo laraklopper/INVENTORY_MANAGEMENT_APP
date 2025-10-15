@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
+
 export default function AddCustomerForm({newCustomerData}) {
   return (
     <form id='addCustomerForm' >
@@ -14,6 +15,8 @@ export default function AddCustomerForm({newCustomerData}) {
                     <input
                     className='input'
                     type='text'
+                    name='customerCode'
+                    value={newCustomerData.customerCode}
                     placeholder='CUSTOMER CODE'
                     />
                   </label>
@@ -25,6 +28,8 @@ export default function AddCustomerForm({newCustomerData}) {
                           <input
                               className='input'
                               type='text'
+                              name='fullName.firstName'
+                              value={newCustomerData.fullName.firstName}
                               required
                               placeholder='FIRST NAME'
                               autoComplete='given-name'
@@ -35,15 +40,15 @@ export default function AddCustomerForm({newCustomerData}) {
                           <input
                               className='input'
                               type='text'
+                              name='fullName.lastName'
+                              value={newCustomerData.fullName.lastName}
                               autoComplete='family-name'
                               placeholder='LAST NAME'
                               required
                           />
                       </label>
                   </div>
-                 
               </Col>
-              
           </Row>
           <Row id='newCustomerRow2'>
               <Col xs={12} md={8}>
@@ -53,6 +58,7 @@ export default function AddCustomerForm({newCustomerData}) {
                           <input
                               className='input'
                               type='email'
+                              name='contactDetails.'
                           />
                       </label>
                       <label className='newCustomerLabel'>
